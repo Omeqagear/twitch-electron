@@ -39,6 +39,8 @@ class StreamsContainer extends Component {
 
 StreamsContainer.propTypes = {
 	dispatch: PropTypes.func,
+	streams: PropTypes.array,
+	routeParams: PropTypes.object
 }
 
 const mapStateToProps = (state) => {

@@ -2,7 +2,7 @@ const remote = require('electron').remote
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import App from './app'
+import { App } from './app'
 import { goBack } from 'react-router-redux'
 
 class AppContainer extends Component {
@@ -47,7 +47,7 @@ class AppContainer extends Component {
 AppContainer.propTypes = {
 	dispatch: PropTypes.func,
 	app: PropTypes.object,
-	children: PropTypes.array
+	children: PropTypes.object
 }
 
 const mapStateToProps = (state) => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
 import styles from './sidebar.css'
@@ -37,6 +37,11 @@ const Sidebar = (props) => {
 			</div>
 		</div>
 	)
+}
+
+Sidebar.propTypes = {
+	show: PropTypes.bool,
+	back: PropTypes.func
 }
 
 export default Sidebar

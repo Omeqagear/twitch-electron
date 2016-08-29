@@ -30,6 +30,7 @@ class FollowingContainer extends Component {
 
 FollowingContainer.propTypes = {
 	dispatch: PropTypes.func,
+	channels: PropTypes.array
 }
 
 const mapStateToProps = (state) => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import axios from 'axios'
 import Hls from '../../shared/hls/hls'
 
@@ -23,7 +23,7 @@ export const actions = {
 					dispatch({type: GET_URL_SUCCESS, data: res.data.url})
 				},
 				(err) => {
-					dispatch({type: GET_URL_ERROR})
+					dispatch({type: GET_URL_ERROR, data: err.data})
 				}
 			)
 		}
@@ -43,11 +43,8 @@ export const actions = {
 export const reducer = (state = initialState, action) => {
 	switch (action.type) {
 	case UPDATE_VIDEO_TIMESTAMP:
-		let _timestamps = {...state.timestamps}
-		_timestamps[action.data.videoId] = action.data.timestamp
-		localStorage.setItem('timestamps', JSON.stringify(_timestamps))
-
-		return Object.assign({}, state, {timestamps: _timestamps})
+		localStorage.setItem('timestamps', JSON.stringify({...state.timestamps, [action.data.videoId]: action.data.timestamp}))
+		return Object.assign({}, state, {timestamps: {...state.timestamps, [action.data.videoId]: action.data.timestamp}})
 	case CLEAR_URL:
 		return Object.assign({}, state, {url: null})
 	case GET_URL_SUCCESS:
@@ -60,9 +57,17 @@ export const reducer = (state = initialState, action) => {
 export const Play = (props) => {
 	return (
 		<div id="play">
-			{props.url ? (
-				<Hls reload={props.reload} goBack={props.goBack} user={props.user} onClose={props.onClose} timestamp={props.timestamp} videoId={props.videoId} url={props.url} />
-			) : null}
+			{props.url && <Hls reload={props.reload} goBack={props.goBack} user={props.user} onClose={props.onClose} timestamp={props.timestamp} videoId={props.videoId} url={props.url} />}
 		</div>
 	)
+}
+
+Play.propTypes = {
+	url: PropTypes.string,
+	reload: PropTypes.func,
+	goBack: PropTypes.func,
+	user: PropTypes.string,
+	onClose: PropTypes.func,
+	timestamp: PropTypes.number,
+	videoId: PropTypes.number 
 }

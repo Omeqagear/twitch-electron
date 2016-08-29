@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './game.css'
 
 const Game = (props) => {
@@ -8,6 +8,11 @@ const Game = (props) => {
 			<p>{props.data.name}</p>
 		</div>
 	)
+}
+
+Game.propTypes = {
+	data: PropTypes.object,
+	onClick: PropTypes.func
 }
 
 export default Game

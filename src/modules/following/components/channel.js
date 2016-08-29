@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './channel.css'
 
 const Channel = (props) => {
@@ -8,6 +8,11 @@ const Channel = (props) => {
 			<p>{props.data.name}</p>
 		</div>
 	)
+}
+
+Channel.propTypes = {
+	onChannelClick: PropTypes.func,
+	data: PropTypes.object
 }
 
 export default Channel

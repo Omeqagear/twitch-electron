@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import WindowMenu from './window-menu'
-import StatusMessage from './status-message'
+import React, { PropTypes } from 'react'
 
 import styles from './header.css'
 
@@ -9,6 +7,11 @@ const Header = (props) => {
 		<header style={{display: !props.show ? 'block' : 'none'}} className={styles.className} onDoubleClick={props.doubleClick}>
 		</header>
 	)
+}
+
+Header.propTypes = {
+	show: PropTypes.bool,
+	doubleClick: PropTypes.func
 }
 
 export default Header

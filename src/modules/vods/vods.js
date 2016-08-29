@@ -1,5 +1,4 @@
-import React from 'react'
-import axios from 'axios'
+import React, { PropTypes } from 'react'
 import Vod from './vod/vod'
 import Twitch from '../../twitch'
 import styles from './vods.css'
@@ -48,4 +47,10 @@ export const Vods = (props) => {
 			</div>
 		</div>
 	)
+}
+
+Vods.propTypes = {
+	user: PropTypes.string,
+	videos: PropTypes.array,
+	onVodClick: PropTypes.func
 }

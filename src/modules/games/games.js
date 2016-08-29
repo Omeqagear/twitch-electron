@@ -1,5 +1,4 @@
-import React from 'react'
-import axios from 'axios'
+import React, { PropTypes } from 'react'
 import styles from './games.css'
 import Twitch from '../../twitch'
 import Game from './components/game'
@@ -46,4 +45,9 @@ export const Games = (props) => {
 			</div>
 		</div>
 	)
+}
+
+Games.propTypes = {
+	games: PropTypes.array,
+	onClick: PropTypes.func
 }

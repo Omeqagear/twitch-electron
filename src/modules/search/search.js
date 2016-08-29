@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Twitch from '../../twitch'
 import styles from './search.css'
 
@@ -77,6 +77,16 @@ export const reducer = (state = initialState, action) => {
 }
 
 export class Search extends Component {
+
+	static propTypes = {
+		type: PropTypes.string,
+		onTypeChange: PropTypes.func,
+		onSearch: PropTypes.func,
+		streams: PropTypes.array,
+		channels: PropTypes.array,
+		onClick: PropTypes.func,
+		games: PropTypes.array
+	}
 
 	constructor (props) {
 		super(props)

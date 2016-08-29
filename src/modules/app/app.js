@@ -26,7 +26,7 @@ export const reducer = (state = initialState, action) => {
 	}
 }
 
-const App= (props) => {
+export const App = (props) => {
 	return (
 		<div id="main">
 			<WindowMenu show={process.platform !== 'darwin'} onMaximise={props.onMaximise} onMinimize={props.onMinimize} onClose={props.onClose} />
@@ -40,12 +40,10 @@ const App= (props) => {
 }
 
 App.propTypes = {
-	hideUi: PropTypes.boolean,
-	children: PropTypes.array,
-	back: PropTypes.function,
-	onMaximise: PropTypes.function,
-	onMinimize: PropTypes.function,
-	onClose: PropTypes.function,
+	hideUi: PropTypes.bool,
+	children: PropTypes.object,
+	back: PropTypes.func,
+	onMaximise: PropTypes.func,
+	onMinimize: PropTypes.func,
+	onClose: PropTypes.func,
 }
-
-export default App

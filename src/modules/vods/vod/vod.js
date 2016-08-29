@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import styles from './vod.css'
 
@@ -12,6 +12,12 @@ const Vod = (props) => {
 			</div>
 		</div>
 	)
+}
+
+Vod.propTypes = {
+	preview: PropTypes.string,
+	onClick: PropTypes.func,
+	data: PropTypes.object
 }
 
 export default Vod

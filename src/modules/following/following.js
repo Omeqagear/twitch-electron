@@ -1,5 +1,4 @@
-import React from 'react'
-import axios from 'axios'
+import React, { PropTypes } from 'react'
 import styles from './following.css'
 import Twitch from '../../twitch'
 import Channel from './components/channel'
@@ -51,4 +50,9 @@ export const Following = (props) => {
 			</div>
 		</div>
 	)
+}
+
+Following.propTypes = {
+	channels: PropTypes.array,
+	onChannelClick: PropTypes.func
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Twitch from '../../twitch'
 import styles from './streams.css'
 import Stream from './components/stream'
@@ -10,7 +10,7 @@ export const GET_STREAMS_ERROR   = 'GET_STREAMS_ERROR'
 const initialState = []
 
 export const actions = {
-	getStreams: (user) => {
+	getStreams: () => {
 		return dispatch => {
 			dispatch({ type: GET_STREAMS })
 			Twitch.api({url: 'streams/followed'}, (error, data) => {
@@ -23,7 +23,7 @@ export const actions = {
 		}
 	},
 	getStreamsForGame: (game) => {
-		const name = encodeURIComponent(game).replace(/\'/g, "%27")
+		const name = encodeURIComponent(game).replace(/\'/g, '%27')
 		return dispatch => {
 			dispatch({ type: GET_STREAMS })
 			Twitch.api({url: 'streams', params: {game: name}}, (error, data) => {
@@ -59,4 +59,9 @@ export const Streams = (props) => {
 			</div>
 		</div>
 	)
+}
+
+Streams.propTypes = {
+	streams: PropTypes.array,
+	onClick: PropTypes.func
 }

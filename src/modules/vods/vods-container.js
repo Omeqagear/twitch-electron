@@ -31,6 +31,7 @@ class VodsContainer extends Component {
 VodsContainer.propTypes = {
 	vods: PropTypes.object,
 	dispatch: PropTypes.func,
+	params: PropTypes.object
 }
 
 const mapStateToProps = (state) => {

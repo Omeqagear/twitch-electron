@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styles from './stream.css'
 
 const Stream = (props) => {
@@ -11,6 +11,12 @@ const Stream = (props) => {
 			</div>
 		</div>
 	)
+}
+
+Stream.propTypes = {
+	preview: PropTypes.string,
+	data: PropTypes.object,
+	onClick: PropTypes.func
 }
 
 export default Stream

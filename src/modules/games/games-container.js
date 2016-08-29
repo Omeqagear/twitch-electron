@@ -16,8 +16,7 @@ class GamesContainer extends Component {
 	}
 
 	onGameClick (game) {
-		const name = encodeURIComponent(game.name).replace(/\'/g, "%27")
-		this.props.dispatch(push(`streams/${name}`))
+		this.props.dispatch(push(`streams/${encodeURIComponent(game.name).replace(/\'/g, '%27')}`))
 	}
 
 	render () {
@@ -31,6 +30,7 @@ class GamesContainer extends Component {
 
 GamesContainer.propTypes = {
 	dispatch: PropTypes.func,
+	games: PropTypes.array
 }
 
 const mapStateToProps = (state) => {

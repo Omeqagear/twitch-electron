@@ -53,8 +53,7 @@ class SearchContainer extends Component {
 				}
 				break
 			case 'games':
-				const name = encodeURIComponent(item.name).replace(/\'/g, "%27")
-				this.props.dispatch(push(`streams/${name}`))
+				this.props.dispatch(push(`streams/${encodeURIComponent(item.name).replace(/\'/g, '%27')}`))
 				break
 		}
 	}
@@ -66,6 +65,9 @@ class SearchContainer extends Component {
 
 SearchContainer.propTypes = {
 	dispatch: PropTypes.func,
+	streams: PropTypes.object,
+	games: PropTypes.object,
+	channels: PropTypes.object
 }
 
 const mapStateToProps = (state) => {

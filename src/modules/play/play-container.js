@@ -34,7 +34,7 @@ class PlayContainer extends Component {
 					})
 				},
 				(err) => {
-					this.setState({loading: true})
+					this.setState({loading: true, err: err})
 					setTimeout(this.fetchUrl, 60000)
 				}
 			)
@@ -47,7 +47,7 @@ class PlayContainer extends Component {
 					})
 				},
 				(err) => {
-					this.setState({loading: true})
+					this.setState({loading: true, err: err})
 					setTimeout(this.fetchUrl, 60000)
 				}
 			)
@@ -90,6 +90,8 @@ class PlayContainer extends Component {
 
 PlayContainer.propTypes = {
 	dispatch: PropTypes.func,
+	params: PropTypes.object,
+	timestamps: PropTypes.object
 }
 
 const mapStateToProps = (state) => {

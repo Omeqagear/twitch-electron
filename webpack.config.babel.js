@@ -55,7 +55,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({ "global.GENTLY": false }),
+    new webpack.DefinePlugin({ 'global.GENTLY': false }),
     extractSASS,
     new HtmlWebpackPlugin({
       filename: 'index.html',

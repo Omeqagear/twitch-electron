@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import styles from './window-menu.css'
 
 const iconStyle = {
@@ -7,6 +7,14 @@ const iconStyle = {
 }
 
 export default class WindowMenu extends Component {
+
+	static propTypes = {
+		show: PropTypes.bool,
+		onMaximise: PropTypes.func,
+		onMinimize: PropTypes.func,
+		onClose: PropTypes.func
+	}
+
 	constructor (props) {
 		super(props)
 	}

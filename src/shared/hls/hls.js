@@ -1,8 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Hls from 'hls.js'
 import styles from './hls.css'
 
 export default class HLS extends Component {
+
+	static propTypes = {
+		timestamp: PropTypes.number,
+		videoId: PropTypes.number,
+		url: PropTypes.string,
+		user: PropTypes.string,
+		goBack: PropTypes.func,
+		reload: PropTypes.func,
+		onClose: PropTypes.func,
+	}
 
 	constructor (props) {
 		super(props)
@@ -39,7 +49,6 @@ export default class HLS extends Component {
 	}
 
 	onKeyDown (ev) {
-		console.log('key pressed: ' + ev.keyCode)
 		switch(ev.keyCode) {
 			case 77:
 				this.toggleMute()
@@ -82,7 +91,7 @@ export default class HLS extends Component {
 		this.setState({volume: this.video.volume})
 	}
 
-	onReady (event, data) {
+	onReady () {
 		this.setState({playing: true})
 		this.video.volume      = this.state.volume
 		this.video.currentTime = this.state.timestamp
@@ -97,16 +106,13 @@ export default class HLS extends Component {
 	}
 
 	onError (e, data) {
-		console.log(e, data)
 		if(data.fatal) {
 			switch(data.type) {
 				case Hls.ErrorTypes.NETWORK_ERROR:
 					// try to recover network error
-					console.log("fatal network error encountered, try to recover")
 					this.hls.startLoad();
 					break;
 				case Hls.ErrorTypes.MEDIA_ERROR:
-					console.log("fatal media error encountered, try to recover")
 					this.hls.recoverMediaError()
 					break;
 				default:
@@ -149,7 +155,7 @@ export default class HLS extends Component {
 					<i className="material-icons" onClick={this.props.goBack}>arrow_back</i>
 					<div className={styles.controls}></div>
 				</div>
-				{this.props.user ? (
+				{this.props.user &&
 					<div className={styles.chat}>
 						<iframe frameBorder="0"
 								scrolling="no"
@@ -160,7 +166,7 @@ export default class HLS extends Component {
 								width="300px">
 						</iframe>
 					</div>
-				) : null}
+				}
 			</div>
 		)
 	}
