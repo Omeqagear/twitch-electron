@@ -1,0 +1,6 @@
+.className {
+	height: 40px;
+	width: 100%;
+	-webkit-app-region: drag;
+	background: #6441A5;
+}

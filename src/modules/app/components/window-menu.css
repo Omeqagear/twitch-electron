@@ -1,0 +1,36 @@
+.windowMenu, .windowMenuHidden {
+	height: 24px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1001;
+	width: 100%;
+	-webkit-app-region: drag;
+}
+
+.windowMenu ul {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	cursor: pointer;
+	position: relative;
+	top: 10px;
+	left: 10px;
+}
+
+.windowMenuHidden li {
+	display: none;
+}
+
+.windowMenu ul li {
+	height: 100%;
+	cursor: pointer;
+	display: inline-block;
+	padding: 0 5px;
+	transition: .3s all ease;
+	-webkit-app-region: no-drag;
+}
+
+.windowMenu ul li:hover {
+	opacity: 0.7;
+}

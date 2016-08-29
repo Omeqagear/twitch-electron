@@ -1,0 +1,51 @@
+.className {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: black;
+	-webkit-app-region: drag;
+}
+
+.chat {
+	-webkit-app-region: drag;
+}
+
+.className i, .withChat i {
+	position: absolute;
+	right: .5rem;
+	top: .5rem;
+	z-index: 1000;
+	display: none;
+	cursor: pointer;
+}
+
+.className:hover i, .withChat:hover i {
+	display: block;
+}
+
+.withChat {
+	position: absolute;
+	width: calc(100% - 300px);
+	height: 100%;
+	background: black;
+	-webkit-app-region: drag;
+}
+
+.className video, .withChat video {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	transform: translateY(-50%) translateX(-50%);
+}
+
+.controls {
+	position: absolute;
+	width: 100%;
+	z-index: -1;
+	bottom: 0;
+	left: 0;
+	height: 40px;
+	-webkit-app-region: no-drag;
+}

@@ -1,0 +1,63 @@
+.className {
+	width: 80px;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 40px;
+	background: #262626;
+	z-index: 2000;
+	overflow: hidden;
+}
+
+.className ul {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	list-style-type: none;
+}
+
+.className ul li {
+	cursor: pointer;
+	padding: 0 5px;
+	transition: .3s all ease;
+	text-align: center;
+	height: 50px;
+	display: block;
+	padding: 30px 0;
+	position: relative;
+	cursor: pointer;
+	-webkit-app-region: no-drag;
+}
+
+.activeClass {
+	background: black;
+}
+
+.className a:hover {
+	background: black;
+}
+
+.className a:hover i {
+	color: white;
+}
+.activeClass i {
+	color: white!important;
+}
+
+.className a {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.className i, .className a {
+	cursor: pointer;
+	font-size: 32px;
+	transition: .3s all ease;
+	display: block;
+	position: absolute;
+	top: 50%;
+	color: black;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
