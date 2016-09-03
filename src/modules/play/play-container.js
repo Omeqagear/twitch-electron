@@ -4,15 +4,11 @@ import { connect } from 'react-redux'
 import { Play, actions } from './play'
 import { actions as appActions } from '../app/app'
 import { goBack } from 'react-router-redux'
-import { getPlaylist } from '../../streamAPI'
 
 class PlayContainer extends Component {
 
 	constructor (props) {
 		super(props)
-		this.state = {
-			loading: false
-		}
 		this.onClose = this.onClose.bind(this)
 		this.fetchUrl = this.fetchUrl.bind(this)
 		this.goBack = this.goBack.bind(this)
@@ -21,28 +17,8 @@ class PlayContainer extends Component {
 
 	fetchUrl () {
 		const { user, video } = this.props.params
-
-		this.setState({loading: true})
-
-		if (video) {
-			getPlaylist(user, video).then(
-				(url) => {
-					this.setState({
-						url,
-						loading: false
-					})
-				}
-			)
-		} else {
-			getPlaylist(user).then(
-				(url) => {
-					this.setState({
-						url,
-						loading: false
-					})
-				}
-			)
-		}
+    this.props.dispatch(actions.clearUrl())
+    this.props.dispatch(actions.getUrl(user, video))
 	}
 
 	goBack () {
@@ -73,7 +49,7 @@ class PlayContainer extends Component {
 
 		return (
 			<div className="play-wrapper" style={{height: '100%', position: 'relative'}}>
-				{ this.state.loading ? (<Loader type="ball-pulse-sync" />) : (<Play reload={this.reload} goBack={this.goBack} onClose={this.onClose} user={user} timestamp={timestamp} videoId={video} url={this.state.url} />) }
+				{ this.props.loading ? (<Loader type="ball-pulse-sync" />) : (<Play reload={this.reload} goBack={this.goBack} onClose={this.onClose} user={user} timestamp={timestamp} videoId={video} url={this.props.url} />) }
 			</div>
 		)
 	}
@@ -82,12 +58,16 @@ class PlayContainer extends Component {
 PlayContainer.propTypes = {
 	dispatch: PropTypes.func,
 	params: PropTypes.object,
-	timestamps: PropTypes.object
+	timestamps: PropTypes.object,
+  loading: PropTypes.bool,
+  url: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
 	return {
-		timestamps: state.play.timestamps
+		timestamps: state.play.timestamps,
+    loading: state.play.loading,
+    url: state.play.url
 	}
 }
 

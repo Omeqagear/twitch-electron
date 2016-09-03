@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
-import axios from 'axios'
 import Hls from '../../shared/hls/hls'
+import { getPlaylist } from '../../streamAPI'
 
 export const GET_URL = 'GET_URL'
 export const GET_URL_SUCCESS = 'GET_URL_SUCCESS'
@@ -10,22 +10,26 @@ export const UPDATE_VIDEO_TIMESTAMP = 'UPDATE_VIDEO_TIMESTAMP'
 
 const initialState = {
 	timestamps: JSON.parse(localStorage.getItem('timestamps')) || {},
+	loading: false
 }
 
 export const actions = {
-	getUrl: (twitchUrl) => {
+	getUrl: (user, videoId) => {
 		return dispatch => {
-			dispatch({ type: GET_URL, twitchUrl: twitchUrl })
-			return axios.get(`/stream?url=${twitchUrl}&quality=best`)
-			.then((res) => res )
-			.then(
-				(res) => {
-					dispatch({type: GET_URL_SUCCESS, data: res.data.url})
-				},
-				(err) => {
-					dispatch({type: GET_URL_ERROR, data: err.data})
-				}
-			)
+			dispatch({ type: GET_URL, data: {user, videoId} })
+			if (videoId) {
+				getPlaylist(user, videoId).then(
+					(url) => {
+						dispatch({ type: GET_URL_SUCCESS, data: url })
+					}
+				)
+			} else {
+				getPlaylist(user).then(
+					(url) => {
+						dispatch({ type: GET_URL_SUCCESS, data: url })
+					}
+				)
+			}
 		}
 	},
 	clearUrl: () => {
@@ -45,10 +49,12 @@ export const reducer = (state = initialState, action) => {
 	case UPDATE_VIDEO_TIMESTAMP:
 		localStorage.setItem('timestamps', JSON.stringify({...state.timestamps, [action.data.videoId]: action.data.timestamp}))
 		return Object.assign({}, state, {timestamps: {...state.timestamps, [action.data.videoId]: action.data.timestamp}})
+	case GET_URL:
+		return Object.assign({}, state, {loading: true})
 	case CLEAR_URL:
 		return Object.assign({}, state, {url: null})
 	case GET_URL_SUCCESS:
-		return Object.assign({}, state, {url: action.data})
+		return Object.assign({}, state, {url: action.data, loading: false})
 	default:
 		return Object.assign({}, state)
 	}
