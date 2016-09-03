@@ -1,6 +1,6 @@
 import React from 'react'
 import Api from './mockAPI'
-import { storiesOf } from '@kadira/storybook'
+import { storiesOf, action } from '@kadira/storybook'
 import Chat from '../src/shared/chat/chat'
 import Hls from '../src/shared/hls/hls'
 import Play from '../src/modules/play/play'
@@ -16,20 +16,23 @@ storiesOf('Components', module)
 .add('Sidebar', () => (
   <Sidebar
     currentPath='/'
-    onClick={() => {}}
+    onClick={action('clicked')}
   />
 ))
 .add('WindowMenu', () => (
   <Header>
     <WindowMenu
       show={true}
+      onMinimize={action('minimize')}
+      onMaximise={action('maximize')}
+      onClose={action('close')}
     />
   </Header>
 ))
 .add('Stream', () => (
   <Stream
     data={Api.getStream()}
-    onClick={() => {}}
+    onClick={action('clicked')}
   />
 ))
 .add('Chat', () => (
