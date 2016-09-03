@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
-import Hls from '../../shared/hls/hls'
-import { getPlaylist } from '../../streamAPI'
+import Hls                  from '../../shared/hls/hls'
+import { getPlaylist }      from '../../streamAPI'
 
-export const GET_URL = 'GET_URL'
-export const GET_URL_SUCCESS = 'GET_URL_SUCCESS'
-export const GET_URL_ERROR = 'GET_URL_ERROR'
-export const CLEAR_URL = 'CLEAR_URL'
+export const GET_URL                = 'GET_URL'
+export const GET_URL_SUCCESS        = 'GET_URL_SUCCESS'
+export const GET_URL_ERROR          = 'GET_URL_ERROR'
+export const CLEAR_URL              = 'CLEAR_URL'
 export const UPDATE_VIDEO_TIMESTAMP = 'UPDATE_VIDEO_TIMESTAMP'
 
 const initialState = {

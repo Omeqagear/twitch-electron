@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Hls from 'hls.js'
 import styles from './hls.css'
+import Chat from '../chat/chat'
 
 export default class HLS extends Component {
 
@@ -157,14 +158,7 @@ export default class HLS extends Component {
 				</div>
 				{this.props.user &&
 					<div className={styles.chat}>
-						<iframe frameBorder="0"
-								scrolling="no"
-								style={{position: 'absolute', right: 0, display: (this.state.chat ? 'block' : 'none') }}
-								id="chat_embed"
-								src={`http://www.twitch.tv/${this.props.user}/chat`}
-								height="100%"
-								width="300px">
-						</iframe>
+						<Chat user={this.props.user} show={this.state.chat} />
 					</div>
 				}
 			</div>
