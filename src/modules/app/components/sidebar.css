@@ -1,12 +1,15 @@
+.container {
+	width: 50px;
+}
+
 .className {
-	width: 80px;
 	height: 100%;
-	position: fixed;
-	left: 0;
-	top: 40px;
 	background: #262626;
-	z-index: 2000;
 	overflow: hidden;
+	width: 100%;
+	transition: .3s all ease;
+	background: #F1F1F1;
+	border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .className ul {

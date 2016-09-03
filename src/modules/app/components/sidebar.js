@@ -5,7 +5,7 @@ import styles from './sidebar.css'
 
 const Sidebar = (props) => {
 	return (
-		<div id="sidebar_container" style={{display: !props.show ? 'block' : 'none'}}>
+		<div className={styles.container} style={{display: !props.show ? 'block' : 'none'}}>
 			<div id="sidebar" className={styles.className}>
 				<nav>
 					<ul>

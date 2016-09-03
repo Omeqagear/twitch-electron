@@ -108,7 +108,7 @@ const Play = (props) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.play}>
-				{props.url && <Hls {...props} />}
+				<Hls {...props} />
 			</div>
       <div className={styles.chat} style={{display: props.chat ? 'block' : 'none'}}>
         <Chat user={props.user} width='100%' />

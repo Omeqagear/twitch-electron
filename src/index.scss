@@ -21,29 +21,18 @@ h1, h2, h3 {
 
 #main {
 	height: 100%;
+  width: 100%;
 }
 
 #view {
-	height: calc(100vh);
+	height: 100vh;
 	position: relative;
 	overflow-y: auto;
 	background: #F1F1F1;
 }
 
-#sidebar_container {
-	width: 51px;
-	position: fixed;
-	left: 0;
-	top: 40px;
-	height: 100%;
-	z-index: 1900;
-}
-
-#sidebar {
-	width: 51px;
-	transition: .3s all ease;
-	background: #F1F1F1;
-	border-right: 1px solid rgba(0, 0, 0, 0.1);
+#main-container {
+  display: flex;
 }
 
 h2 {

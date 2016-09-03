@@ -5,16 +5,18 @@ import Hls from '../src/shared/hls/hls'
 import Play from '../src/modules/play/play'
 
 storiesOf('Twitch', module)
-.add('Player', () => {
+.add('Player', () => (
   <Play
     url='http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8'
     onTimeUpdate={() => {}}
     onVolumeChange={() => {}}
-    user='cuda87'
-    chat={true}
     volume={0.1}
+    timestamp={0}
+    muted={false}
+    chat={true}
+    user='cuda87'
   />
-})
+))
 .add('Chat', () => (
   <Chat
     user='monstercat'
