@@ -7,7 +7,7 @@ export default class HLS extends Component {
 	static propTypes = {
 		timestamp: PropTypes.number,
 		videoId: PropTypes.number,
-		url: PropTypes.string,
+		url: PropTypes.string.isRequired,
 		user: PropTypes.string,
 		goBack: PropTypes.func,
 		reload: PropTypes.func,

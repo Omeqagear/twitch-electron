@@ -1,7 +1,7 @@
-import webpack from 'webpack'
-import path                          from 'path'
-import ExtractTextPlugin             from 'extract-text-webpack-plugin'
-import HtmlWebpackPlugin             from 'html-webpack-plugin'
+import webpack           from 'webpack'
+import path              from 'path'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const extractSASS = new ExtractTextPlugin('styles/[name].css')
 

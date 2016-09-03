@@ -1,12 +1,16 @@
 import React from 'react'
-import { storiesOf, action, linkTo } from '@kadira/storybook'
-import Hls from '../src/shared/hls/hls'
+import { storiesOf } from '@kadira/storybook'
+import Player from '../src/shared/player/player'
 
-
-storiesOf('Hls', module)
-  .add('with text', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
-  ));
+storiesOf('Twitch-Player', module)
+.add('live stream', () => (
+  <Player
+    user='monstercat'
+  />
+))
+.add('vod', () => (
+  <Player
+    user='cuda87'
+    videoId={87149669}
+  />
+))
