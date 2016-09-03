@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
-import { Streams, actions } from './streams'
+import Streams, { actions } from './streams'
 import Loader from 'react-loaders'
 import { createWindow } from '../../window'
 import keymaster from 'keymaster'

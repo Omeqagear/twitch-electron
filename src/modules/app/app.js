@@ -30,10 +30,11 @@ export const reducer = (state = initialState, action) => {
 export const App = (props) => {
 	return (
 		<div id="main">
-			<WindowMenu show={process.platform !== 'darwin'} onMaximise={props.onMaximise} onMinimize={props.onMinimize} onClose={props.onClose} />
-			<Header show={props.hideUi} />
+			<Header show={props.hideUi}>
+				<WindowMenu show={process.platform !== 'darwin'} onMaximise={props.onMaximise} onMinimize={props.onMinimize} onClose={props.onClose} />
+			</Header>
 			<div className={styles.container}>
-				<Sidebar show={props.hideUi} back={props.back} />
+				<Sidebar show={props.hideUi} currentPath={props.currentPath} onClick={props.onNavigate} />
 				<div className={styles.view}>
 					{props.children}
 				</div>
@@ -49,4 +50,6 @@ App.propTypes = {
 	onMaximise: PropTypes.func,
 	onMinimize: PropTypes.func,
 	onClose: PropTypes.func,
+	currentPath: PropTypes.string,
+	onNavigate: PropTypes.func
 }

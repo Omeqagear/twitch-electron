@@ -3,17 +3,18 @@ const remote = require('electron').remote
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { App } from './app'
-import { goBack } from 'react-router-redux'
+import { goBack, push } from 'react-router-redux'
 import keymaster from 'keymaster'
 
 class AppContainer extends Component {
 
 	constructor (props) {
 		super(props)
-		this.back = this.back.bind(this)
+		
 		this.onMinimize = this.onMinimize.bind(this)
 		this.onMaximise = this.onMaximise.bind(this)
 		this.onClose    = this.onClose.bind(this)
+		this.navigate   = this.navigate.bind(this)
 	}
 
 	componentDidMount () {
@@ -42,13 +43,28 @@ class AppContainer extends Component {
 		window.close()
 	}
 
-	back () {
-    this.props.dispatch(goBack())
+	navigate (url) {
+
+		if (url == 'back') {
+			this.props.dispatch(goBack())
+			return
+		}
+
+		this.props.dispatch(push(url))
 	}
 
 	render () {
 		return (
-			<App hideUi={this.props.app.hideUi} back={this.back} children={this.props.children} doubleClick={this.onMaximise} onClose={this.onClose} onMinimize={this.onMinimize} onMaximise={this.onMaximise} />
+			<App
+				onNavigate={this.navigate}
+				currentPath={this.props.location.pathname}
+				hideUi={this.props.app.hideUi}
+				children={this.props.children}
+				doubleClick={this.onMaximise}
+				onClose={this.onClose}
+				onMinimize={this.onMinimize}
+				onMaximise={this.onMaximise}
+			/>
 		)
 	}
 }
@@ -56,7 +72,8 @@ class AppContainer extends Component {
 AppContainer.propTypes = {
 	dispatch: PropTypes.func,
 	app: PropTypes.object,
-	children: PropTypes.object
+	children: PropTypes.object,
+	location: PropTypes.object
 }
 
 const mapStateToProps = (state) => {

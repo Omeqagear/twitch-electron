@@ -1,37 +1,53 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
 
 import styles from './sidebar.css'
 
+const matchesPath = (path, url) => {
+
+	if (url == '/' && path.includes('/streams')) {
+		return true
+	}
+
+	return path == url
+}
+
 const Sidebar = (props) => {
+
+	const links = [
+		{
+			url: 'back',
+			icon: 'arrow_back'
+		},
+		{
+			url: '/search',
+			icon: 'search'
+		},
+		{
+			url: '/following',
+			icon: 'favorite'
+		},
+		{
+			url: '/',
+			icon: 'videocam'
+		},
+		{
+			url: '/games',
+			icon: 'videogame_asset'
+		}
+	]
+
 	return (
 		<div className={styles.container} style={{display: !props.show ? 'block' : 'none'}}>
 			<div id="sidebar" className={styles.className}>
 				<nav>
 					<ul>
-						<li onClick={props.back}>
-							<i className="material-icons">arrow_back</i>
-						</li>
-						<li>
-							<Link to="/search" activeClassName={styles.activeClass}>
-								<i className="material-icons">search</i>
-							</Link>
-						</li>
-						<li>
-							<Link to="/following" activeClassName={styles.activeClass}>
-								<i className="material-icons">favorite</i>
-							</Link>
-						</li>
-						<li>
-							<Link to="/" activeClassName={styles.activeClass} onlyActiveOnIndex={true}>
-								<i className="material-icons">videocam</i>
-							</Link>
-						</li>
-						<li>
-							<Link to="/games" activeClassName={styles.activeClass}>
-								<i className="material-icons">videogame_asset</i>
-							</Link>
-						</li>
+						{links.map((link) => {
+							return (
+								<li className={matchesPath(props.currentPath, link.url) ? styles.activeClass : ''} key={link.icon} onClick={props.onClick.bind(this, link.url)}>
+									<i className="material-icons">{link.icon}</i>
+								</li>
+							)
+						})}
 					</ul>
 				</nav>
 			</div>
@@ -41,7 +57,8 @@ const Sidebar = (props) => {
 
 Sidebar.propTypes = {
 	show: PropTypes.bool,
-	back: PropTypes.func
+	onClick: PropTypes.func.isRequired,
+	currentPath: PropTypes.string.isRequired
 }
 
 export default Sidebar
