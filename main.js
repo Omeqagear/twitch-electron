@@ -17,7 +17,10 @@ const createWindow = () => {
 	})
 
 	mainWindow.loadURL(`file://${__dirname}/public/index.html`)
-	mainWindow.webContents.openDevTools()	
+
+  if (process.env.ENV == 'development') {
+    mainWindow.webContents.openDevTools() 
+  }
 
 	mainWindow.on('closed', () => {
 		mainWindow = null
