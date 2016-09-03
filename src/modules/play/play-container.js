@@ -1,11 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import Loader from 'react-loaders'
-import Chat from '../../shared/chat/chat'
 import { connect } from 'react-redux'
-import { Play, actions } from './play'
+import Play, { actions } from './play'
 import { actions as appActions } from '../app/app'
 import keymaster from 'keymaster'
-import styles from './play.css'
 
 class PlayContainer extends Component {
 
@@ -78,13 +76,10 @@ class PlayContainer extends Component {
     const { url, muted, volume, chat, loading } = this.props
 
 		return (
-			<div className={styles.container} style={{height: '100%', position: 'relative'}}>
+			<div style={{height: '100%', position: 'relative'}}>
 				{ loading ? (
           <Loader type="ball-pulse-sync" />
-        ) : (<Play onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} volume={volume} timestamp={timestamp} url={url} muted={muted} />) }
-        <div className={styles.chat} style={{display: chat ? 'block' : 'none'}}>
-          <Chat user={user} show={chat} width='100%' />
-        </div>
+        ) : (<Play onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} volume={volume} timestamp={timestamp} url={url} muted={muted} chat={chat} user={user} />) }
 			</div>
 		)
 	}

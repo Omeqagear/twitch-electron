@@ -4,7 +4,7 @@ const Chat = (props) => {
   return (
     <iframe frameBorder="0"
         scrolling="no"
-        style={{position: 'absolute', right: 0, display: (props.show ? 'block' : 'none') }}
+        style={{position: 'absolute', right: 0}}
         id="chat_embed"
         src={`http://www.twitch.tv/${props.user}/chat`}
         height={props.height || '100%'}
@@ -16,7 +16,6 @@ const Chat = (props) => {
 
 Chat.propTypes = {
   user: PropTypes.string.isRequired,
-  show: PropTypes.bool,
   width: PropTypes.string,
   height: PropTypes.string
 }

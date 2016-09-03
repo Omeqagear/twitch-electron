@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
 import Hls                  from '../../shared/hls/hls'
+import Chat                 from '../../shared/chat/chat'
 import { getPlaylist }      from '../../streamAPI'
-import styles from './play.css'
+import styles               from './play.css'
 
 export const GET_URL                = 'GET_URL'
 export const GET_URL_SUCCESS        = 'GET_URL_SUCCESS'
@@ -103,10 +104,15 @@ export const reducer = (state = initialState, action) => {
 	}
 }
 
-export const Play = (props) => {
+const Play = (props) => {
 	return (
-		<div className={styles.play}>
-			{props.url && <Hls {...props} />}
+		<div className={styles.container}>
+			<div className={styles.play}>
+				{props.url && <Hls {...props} />}
+			</div>
+      <div className={styles.chat} style={{display: props.chat ? 'block' : 'none'}}>
+        <Chat user={props.user} width='100%' />
+      </div>
 		</div>
 	)
 }
@@ -116,5 +122,9 @@ Play.propTypes = {
 	timestamp: PropTypes.number,
 	volume: PropTypes.number,
 	onTimeUpdate: PropTypes.func,
-	onVolumeChange: PropTypes.func
+	onVolumeChange: PropTypes.func,
+	user: PropTypes.string,
+	chat: PropTypes.bool
 }
+
+export default Play
