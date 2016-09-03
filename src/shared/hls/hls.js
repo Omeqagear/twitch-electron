@@ -24,16 +24,16 @@ export default class HLS extends Component {
 			chat: true
 		}
 
-		this.toggle = this.toggle.bind(this)
-		this.onReady = this.onReady.bind(this)
-		this.onError = this.onError.bind(this)
-		this.onChange = this.onChange.bind(this)
-		this.setVolume = this.setVolume.bind(this)
-		this.onKeyDown = this.onKeyDown.bind(this)
-		this.toggleMute = this.toggleMute.bind(this)
+		this.toggle         = this.toggle.bind(this)
+		this.onReady        = this.onReady.bind(this)
+		this.onError        = this.onError.bind(this)
+		this.onChange       = this.onChange.bind(this)
+		this.setVolume      = this.setVolume.bind(this)
+		this.onKeyDown      = this.onKeyDown.bind(this)
+		this.toggleMute     = this.toggleMute.bind(this)
 		this.increaseVolume = this.increaseVolume.bind(this)
 		this.decreaseVolume = this.decreaseVolume.bind(this)
-		this.toggleChat = this.toggleChat.bind(this)
+		this.toggleChat     = this.toggleChat.bind(this)
 	}
 
 	componentDidMount () {

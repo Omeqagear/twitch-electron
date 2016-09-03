@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 import { Play, actions } from './play'
 import { actions as appActions } from '../app/app'
 import { goBack } from 'react-router-redux'
-
-const TwitchStreams = require('twitch-get-stream')
+import { getPlaylist } from '../../streamAPI'
 
 class PlayContainer extends Component {
 
@@ -26,29 +25,21 @@ class PlayContainer extends Component {
 		this.setState({loading: true})
 
 		if (video) {
-			TwitchStreams.get(user, video).then(
-				(levels) => {
+			getPlaylist(user, video).then(
+				(url) => {
 					this.setState({
-						url: levels[0].url,
+						url,
 						loading: false
 					})
-				},
-				(err) => {
-					this.setState({loading: true, err: err})
-					setTimeout(this.fetchUrl, 60000)
 				}
 			)
 		} else {
-			TwitchStreams.get(user).then(
-				(levels) => {
+			getPlaylist(user).then(
+				(url) => {
 					this.setState({
-						url: levels[0].url,
+						url,
 						loading: false
 					})
-				},
-				(err) => {
-					this.setState({loading: true, err: err})
-					setTimeout(this.fetchUrl, 60000)
 				}
 			)
 		}

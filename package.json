@@ -5,10 +5,12 @@
   "main": "main.js",
   "scripts": {
     "start": "ENV=development electron .",
-  	"build": "webpack",
+    "build": "webpack",
     "package": "ENV=production webpack && electron-packager . --all --out release --overwrite",
     "dev": "concurrently -k 'webpack -w --colors' 'npm start'",
-    "test": "mocha setup.js src/**/*-spec.js src/**/**/*-spec.js"
+    "test": "mocha setup.js src/**/*-spec.js src/**/**/*-spec.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "",
   "license": "MIT",
@@ -39,7 +41,8 @@
     "react-addons-test-utils": "^15.3.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "@kadira/storybook": "^2.5.2"
   },
   "dependencies": {
     "axios": "^0.14.0",
@@ -55,7 +58,6 @@
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.11",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0",
-    "twitch-get-stream": "git+https://github.com/andreasboden/node-twitch-get-stream.git"
+    "redux-thunk": "^2.1.0"
   }
 }
