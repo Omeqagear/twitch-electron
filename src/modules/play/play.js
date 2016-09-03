@@ -7,10 +7,12 @@ export const GET_URL_SUCCESS        = 'GET_URL_SUCCESS'
 export const GET_URL_ERROR          = 'GET_URL_ERROR'
 export const CLEAR_URL              = 'CLEAR_URL'
 export const UPDATE_VIDEO_TIMESTAMP = 'UPDATE_VIDEO_TIMESTAMP'
+export const UPDATE_VOLUME          = 'UPDATE_VOLUME'
 
 const initialState = {
 	timestamps: JSON.parse(localStorage.getItem('timestamps')) || {},
-	loading: false
+	loading: false,
+	volume: 0.5,
 }
 
 export const actions = {
@@ -41,6 +43,11 @@ export const actions = {
 		return dispatch => {
 			dispatch({type: UPDATE_VIDEO_TIMESTAMP, data: {videoId, timestamp}})
 		}
+	},
+	updateVolume: (volume) => {
+		return dispatch => {
+			dispatch({type: UPDATE_VOLUME, data: volume})
+		}
 	}
 }
 
@@ -55,6 +62,8 @@ export const reducer = (state = initialState, action) => {
 		return Object.assign({}, state, {url: null})
 	case GET_URL_SUCCESS:
 		return Object.assign({}, state, {url: action.data, loading: false})
+	case UPDATE_VOLUME:
+		return Object.assign({}, state, {volume: action.data})
 	default:
 		return Object.assign({}, state)
 	}
@@ -63,17 +72,15 @@ export const reducer = (state = initialState, action) => {
 export const Play = (props) => {
 	return (
 		<div id="play">
-			{props.url && <Hls reload={props.reload} goBack={props.goBack} user={props.user} onClose={props.onClose} timestamp={props.timestamp} videoId={props.videoId} url={props.url} />}
+			{props.url && <Hls onTimeUpdate={props.onTimeUpdate} onVolumeChange={props.onVolumeChange} volume={props.volume} timestamp={props.timestamp} url={props.url} />}
 		</div>
 	)
 }
 
 Play.propTypes = {
 	url: PropTypes.string,
-	reload: PropTypes.func,
-	goBack: PropTypes.func,
-	user: PropTypes.string,
-	onClose: PropTypes.func,
 	timestamp: PropTypes.number,
-	videoId: PropTypes.number 
+	volume: PropTypes.number,
+	onTimeUpdate: PropTypes.func,
+	onVolumeChange: PropTypes.func
 }

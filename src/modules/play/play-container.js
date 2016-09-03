@@ -3,26 +3,21 @@ import Loader from 'react-loaders'
 import { connect } from 'react-redux'
 import { Play, actions } from './play'
 import { actions as appActions } from '../app/app'
-import { goBack } from 'react-router-redux'
 
 class PlayContainer extends Component {
 
 	constructor (props) {
 		super(props)
-		this.onClose = this.onClose.bind(this)
-		this.fetchUrl = this.fetchUrl.bind(this)
-		this.goBack = this.goBack.bind(this)
-		this.reload = this.reload.bind(this)
+    this.fetchUrl       = this.fetchUrl.bind(this)
+    this.reload         = this.reload.bind(this)
+    this.onTimeUpdate   = this.onTimeUpdate.bind(this)
+    this.onVolumeChange = this.onVolumeChange.bind(this)
 	}
 
 	fetchUrl () {
 		const { user, video } = this.props.params
     this.props.dispatch(actions.clearUrl())
     this.props.dispatch(actions.getUrl(user, video))
-	}
-
-	goBack () {
-		this.props.dispatch(goBack())
 	}
 
 	componentDidMount () {
@@ -34,22 +29,30 @@ class PlayContainer extends Component {
 		this.props.dispatch(appActions.hideUi(false))
 	}
 
-	onClose (videoId, timestamp) {
-		this.props.dispatch(actions.updateTimestamp(videoId, timestamp))
-	}
-
 	reload () {
 		this.fetchUrl()
 	}
 
+  onTimeUpdate (e) {
+    if (this.props.params.video) {
+      this.props.dispatch(actions.updateTimestamp(this.props.params.video, e.target.currentTime))
+    }
+  }
+
+  onVolumeChange (e) {
+    this.props.dispatch(actions.updateVolume(e.target.volume))
+  }
+
 	render () {
 
-		const { video, user } = this.props.params
+		const { video } = this.props.params
 		const timestamp = this.props.timestamps[video]
 
 		return (
 			<div className="play-wrapper" style={{height: '100%', position: 'relative'}}>
-				{ this.props.loading ? (<Loader type="ball-pulse-sync" />) : (<Play reload={this.reload} goBack={this.goBack} onClose={this.onClose} user={user} timestamp={timestamp} videoId={video} url={this.props.url} />) }
+				{ this.props.loading ? (
+          <Loader type="ball-pulse-sync" />
+        ) : (<Play onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} timestamp={timestamp} url={this.props.url} />) }
 			</div>
 		)
 	}
