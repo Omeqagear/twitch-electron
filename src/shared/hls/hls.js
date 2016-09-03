@@ -9,18 +9,18 @@ export default class HLS extends Component {
 		volume: PropTypes.number,
 		url: PropTypes.string.isRequired,
 		onTimeUpdate: PropTypes.func.isRequired,
-		onVolumeChange: PropTypes.func.isRequired
+		onVolumeChange: PropTypes.func.isRequired,
+		muted: PropTypes.bool
 	}
 
 	constructor (props) {
 		super(props)
-
-		this.state  = {
-			volume: props.volume || 0.5,
-			timestamp: props.timestamp || 0,
-		}
-
 		this.onReady = this.onReady.bind(this)
+	}
+
+	componentWillReceiveProps ( { muted, volume } ) {
+		this.video.muted = muted
+		this.video.volume = volume
 	}
 
 	componentDidMount () {
@@ -36,8 +36,9 @@ export default class HLS extends Component {
 	}
 
 	onReady () {
-		this.video.volume      = this.state.volume
-		this.video.currentTime = this.state.timestamp
+		this.video.volume      = this.props.volume || 0.5
+		this.video.currentTime = this.props.timestamp || 0
+		this.video.muted       = this.props.muted || false
 		this.video.play()
 	}
 

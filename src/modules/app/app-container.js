@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { App } from './app'
 import { goBack } from 'react-router-redux'
-import keydown from 'react-keydown'
+import keymaster from 'keymaster'
 
 class AppContainer extends Component {
 
@@ -16,15 +16,13 @@ class AppContainer extends Component {
 		this.onClose    = this.onClose.bind(this)
 	}
 
-  componentWillReceiveProps ( { keydown } ) {
-    if ( keydown.event ) {
-      switch(keydown.event.which) {
-        case 8:
-          this.props.dispatch(goBack())
-          break
-      }
-    }
-  }
+	componentDidMount () {
+		keymaster('backspace', this.back)
+	}
+
+	componentWillUnmount () {
+		keymaster.unbind('backspace', this.back)
+	}
 
 	onMinimize () {
 		let window = remote.getCurrentWindow()
@@ -45,7 +43,7 @@ class AppContainer extends Component {
 	}
 
 	back () {
-		this.props.dispatch(goBack())
+    this.props.dispatch(goBack())
 	}
 
 	render () {
@@ -67,4 +65,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(keydown(AppContainer))
+export default connect(mapStateToProps)(AppContainer)

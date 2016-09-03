@@ -47,9 +47,9 @@
   "dependencies": {
     "axios": "^0.14.0",
     "hls.js": "^0.6.2-4",
+    "keymaster": "^1.6.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-keydown": "^1.6.2",
     "react-loaders": "^2.1.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",

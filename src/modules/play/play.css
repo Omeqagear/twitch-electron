@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+}
+
+.play {
+  flex-grow: 2;
+  position: relative;
+}
+
+.chat {
+  width: 300px;
+  position: relative;
+}
