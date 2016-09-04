@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ENV=development electron .",
     "build": "webpack",
-    "package": "webpack -p --define process.env.NODE_ENV='\"production\"' && electron-packager . --all --out release --overwrite",
+    "package": "webpack -p --define process.env.NODE_ENV='\"production\"' && electron-packager . --all --out release --overwrite --asar",
     "dev": "concurrently -k 'webpack -w --colors' 'npm start'",
     "test": "mocha setup.js src/**/*-spec.js src/**/**/*-spec.js",
     "storybook": "start-storybook -p 6006",

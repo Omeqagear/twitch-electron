@@ -12,5 +12,5 @@ export const createWindow = (url) => {
 			webSecurity: false,
 		},
 	})
-	win.loadURL(`http://localhost:6005/#${url}`)
+	win.loadURL(`http://localhost:${process.env.ENV == 'development' ? 3002 : 6005}/#${url}`)
 }

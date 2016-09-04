@@ -109,6 +109,7 @@ const Play = (props) => {
 		<div className={styles.container}>
 			<div className={styles.play}>
 				<Hls {...props} />
+				<div className={styles.controls}></div>
 			</div>
       <div className={styles.chat} style={{display: props.chat ? 'block' : 'none'}}>
         <Chat user={props.user} width='100%' />
