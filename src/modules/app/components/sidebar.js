@@ -35,13 +35,18 @@ const links = [
 
 export default function Sidebar(props) {
   return (
-    <div className={styles.container} style={{display: !props.show ? 'block' : 'none'}}>
+    <div
+      className={styles.container}
+      style={{display: !props.show ? 'block' : 'none'}}>
       <div id="sidebar" className={styles.className}>
         <nav>
           <ul>
             {links.map((link) => {
               return (
-                <li className={matchesPath(props.currentPath, link.url) ? styles.activeClass : ''} key={link.icon} onClick={props.onClick.bind(this, link.url)}>
+                <li
+                  className={matchesPath(props.currentPath, link.url) ? styles.activeClass : ''}
+                  key={link.icon}
+                  onClick={props.onClick.bind(this, link.url)}>
                   <i className='material-icons'>{link.icon}</i>
                 </li>
               )
