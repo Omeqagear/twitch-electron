@@ -3,7 +3,7 @@ import styles from './channel.css'
 
 const Channel = (props) => {
   return (
-    <div onClick={props.onChannelClick.bind(this, props.data)} className={styles.className}>
+    <div onClick={props.onClick.bind(this, props.data)} className={styles.className}>
       <img src={props.data.logo} />
       <p>{props.data.name}</p>
     </div>
@@ -11,7 +11,7 @@ const Channel = (props) => {
 }
 
 Channel.propTypes = {
-  onChannelClick: PropTypes.func,
+  onClick: PropTypes.func,
   data: PropTypes.object
 }
 

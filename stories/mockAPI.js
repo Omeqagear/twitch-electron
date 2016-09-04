@@ -1,4 +1,65 @@
 export default {
+  getGame: () => {
+    return {
+      'game': {
+        'name': 'Battlefield 1',
+        'popularity': 55200,
+        '_id': 488500,
+        'giantbomb_id': 48113,
+        'box': {
+          'large': 'https://static-cdn.jtvnw.net/ttv-boxart/Battlefield%201-272x380.jpg',
+          'medium': 'https://static-cdn.jtvnw.net/ttv-boxart/Battlefield%201-136x190.jpg',
+          'small': 'https://static-cdn.jtvnw.net/ttv-boxart/Battlefield%201-52x72.jpg',
+          'template': 'https://static-cdn.jtvnw.net/ttv-boxart/Battlefield%201-{width}x{height}.jpg'
+        },
+        'logo': {
+          'large': 'https://static-cdn.jtvnw.net/ttv-logoart/Battlefield%201-240x144.jpg',
+          'medium': 'https://static-cdn.jtvnw.net/ttv-logoart/Battlefield%201-120x72.jpg',
+          'small': 'https://static-cdn.jtvnw.net/ttv-logoart/Battlefield%201-60x36.jpg',
+          'template': 'https://static-cdn.jtvnw.net/ttv-logoart/Battlefield%201-{width}x{height}.jpg'
+        },
+        '_links': {
+        }
+      },
+      'viewers': 55819,
+      'channels': 462
+    }
+  },
+  getChannel: () => {
+    return {
+      'mature':false,
+      'status':'Spinnin\' Records | It all starts with good music',
+      'broadcaster_language':'en',
+      'display_name':'Spinninrecords',
+      'game':'Music',
+      'language':'nl',
+      '_id':75999949,
+      'name':'spinninrecords',
+      'created_at':'2014-11-26T21:28:29Z',
+      'updated_at':'2016-09-03T18:04:40Z',
+      'delay':null,
+      'logo':'https://static-cdn.jtvnw.net/jtv_user_pictures/spinninrecords-profile_image-da2302f5e8ffbb9a-300x300.jpeg',
+      'banner':null,
+      'video_banner':'https://static-cdn.jtvnw.net/jtv_user_pictures/spinninrecords-channel_offline_image-6f9de11622747e33-1920x1080.jpeg',
+      'background':null,
+      'profile_banner':'https://static-cdn.jtvnw.net/jtv_user_pictures/spinninrecords-profile_banner-614899a1fbdef082-480.jpeg',
+      'profile_banner_background_color':null,
+      'partner':true,'url':'https://www.twitch.tv/spinninrecords',
+      'views':606607,
+      'followers':73191,
+      '_links': {
+        'self':'http://api.twitch.tv/kraken/channels/spinninrecords',
+        'follows':'http://api.twitch.tv/kraken/channels/spinninrecords/follows',
+        'commercial':'http://api.twitch.tv/kraken/channels/spinninrecords/commercial',
+        'stream_key':'http://api.twitch.tv/kraken/channels/spinninrecords/stream_key',
+        'chat':'http://api.twitch.tv/kraken/chat/spinninrecords',
+        'subscriptions':'http://api.twitch.tv/kraken/channels/spinninrecords/subscriptions',
+        'editors':'http://api.twitch.tv/kraken/channels/spinninrecords/editors',
+        'teams':'http://api.twitch.tv/kraken/channels/spinninrecords/teams',
+        'videos':'http://api.twitch.tv/kraken/channels/spinninrecords/videos'
+      }
+    }
+  },
   getStream: () => {
     return {
       '_id':23075570752,

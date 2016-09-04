@@ -22,7 +22,7 @@ class FollowingContainer extends Component {
   render () {
     return (
       <div className="following-wrapper" style={{height: '100%', position: 'relative'}}>
-        { !this.props.channels.length ? (<Loader type="ball-pulse-sync" />) : (<Following onChannelClick={this.onChannelClick} channels={this.props.channels} />) }
+        { !this.props.channels.length ? (<Loader type="ball-pulse-sync" />) : (<Following onClick={this.onChannelClick} channels={this.props.channels} />) }
       </div>
     )
   }

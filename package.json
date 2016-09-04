@@ -9,7 +9,7 @@
     "package": "webpack -p --define process.env.NODE_ENV='\"production\"' && electron-packager . --all --out release --overwrite --asar",
     "dev": "concurrently -k 'webpack -w --colors' 'npm start'",
     "test": "mocha setup.js src/**/*-spec.js src/**/**/*-spec.js",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./public/",
     "build-storybook": "build-storybook"
   },
   "author": "",

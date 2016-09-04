@@ -41,7 +41,7 @@ export const Games = (props) => {
       <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>GAMES</h1>
       <div className={styles.className}>
         {props.games.map((data) => {
-          return (<Game onClick={props.onClick} key={data.game._id} data={data.game} />)
+          return (<Game onClick={props.onClick} key={data.game._id} data={data} />)
         })}
       </div>
     </div>

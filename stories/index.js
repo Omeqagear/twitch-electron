@@ -5,6 +5,8 @@ import Chat from '../src/shared/chat/chat'
 import Hls from '../src/shared/hls/hls'
 import Play from '../src/modules/play/play'
 import Stream from '../src/modules/streams/components/stream'
+import Channel from '../src/modules/following/components/channel'
+import Game from '../src/modules/games/components/game'
 import Header from '../src/modules/app/components/header'
 import Sidebar from '../src/modules/app/components/sidebar'
 import WindowMenu from '../src/modules/app/components/window-menu'
@@ -32,6 +34,18 @@ storiesOf('Components', module)
 .add('Stream', () => (
   <Stream
     data={Api.getStream()}
+    onClick={action('clicked')}
+  />
+))
+.add('Channel', () => (
+  <Channel
+    data={Api.getChannel()}
+    onClick={action('clicked')}
+  />
+))
+.add('Game', () => (
+  <Game
+    data={Api.getGame()}
     onClick={action('clicked')}
   />
 ))

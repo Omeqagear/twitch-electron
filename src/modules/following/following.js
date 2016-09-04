@@ -48,7 +48,7 @@ export const Following = (props) => {
       <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>FOLLOWING</h1>
       <div className={styles.className}>
         {props.channels.map((data) => {
-          return (<Channel onChannelClick={props.onChannelClick} key={data.channel._id} data={data.channel} />)
+          return (<Channel onClick={props.onClick} key={data.channel._id} data={data.channel} />)
         })}
       </div>
     </div>
@@ -57,5 +57,5 @@ export const Following = (props) => {
 
 Following.propTypes = {
   channels: PropTypes.array,
-  onChannelClick: PropTypes.func
+  onClick: PropTypes.func
 }
