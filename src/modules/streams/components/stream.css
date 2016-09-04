@@ -12,56 +12,68 @@
   flex-grow: 1;
 }
 
-.className h3 {
+.top {
   position: absolute;
-  z-index: 10;
+  top: 0;
   width: 100%;
-  color: white;
-  padding: 20px;
-  top: 0px;
-  margin: 0;
-  left: 0;
-  transition: .2s all ease;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(0,0,0,.5) 20%,rgba(125,185,232,0) 100%);
 }
 
-.className p {
-  /*display: none;*/
-  position: absolute;
-  z-index: 10;
-  width: 100%;
+.title {
   color: white;
-  padding: 20px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.bottom {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  color: white;
   bottom: 0px;
   left: 0;
-  font-size: 20px;
-  margin: 0;
-  transition: .2s all ease;
+  display: flex;
+  background: linear-gradient(to top, rgba(0,0,0,.5) 20%,rgba(125,185,232,0) 100%);
+  justify-content: space-between;
 }
 
-.className img {
+.viewers {
+  min-width: 120px;
+  justify-content: flex-start;
+}
+
+.game {
+  min-width: 300px;
+  justify-content: flex-end;
+}
+
+.game, .viewers {
+  overflow: hidden;
+  padding: 10px;
+  display: flex;
+  white-space: nowrap;
+}
+
+.game i, .viewers i {
+  align-self: center;
+  flex-flow: column;
+}
+
+.game span, .viewers span {
+  padding-left: 10px;
+  align-self: center;
+}
+
+.bg {
   transition: .2s all ease;
   width: 100%;
   object-fit: cover;
   vertical-align: top;
   -webkit-backface-visibility: hidden;
+  transition: .3s all ease;
 }
 
-.className div {
-  opacity: 0;
-  transition: .2s all ease;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
-  text-transform: uppercase;
-  border: 2px solid white;
-  padding: 20px 40px;
-  color: white;
-  background: linear-gradient(to top, rgba(0,0,0,.5) 20%,rgba(125,185,232,0) 100%);
-  text-align: center;
-}
-
-.className:hover div {
-  opacity: 1;
+.className:hover img {
+  opacity: 0.8;
 }
