@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Loader from 'react-loaders'
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
-import { Games, actions } from './games'
+import Games, { actions } from './games'
 
 class GamesContainer extends Component {
 

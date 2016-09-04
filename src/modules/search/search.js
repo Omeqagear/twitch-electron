@@ -3,7 +3,7 @@ import Twitch from '../../twitch'
 import styles from './search.css'
 
 import Stream from '../streams/components/stream'
-import Channel from '../following/components/channel'
+import Channel from '../channels/components/channel'
 import Game from '../games/components/game'
 
 const GET_STREAMS          = 'GET_STREAMS'

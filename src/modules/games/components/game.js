@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import NumberFormat from 'react-number-format'
 import styles from './game.css'
 
 const Game = (props) => {
@@ -6,7 +7,12 @@ const Game = (props) => {
     <div onClick={props.onClick.bind(this, props.data)} className={styles.className}>
       <img className={styles.bg} src={props.data.game.box.large} />
       <p className={styles.title}>{props.data.game.name}</p>
-      <p className={styles.viewers}>{props.data.viewers}</p>
+      <div className={styles.bottom}>
+        <div className={styles.viewers}>
+          <i className='material-icons'>person</i>
+          <NumberFormat value={props.data.viewers} displayType={'text'} thousandSeperator={true} />
+        </div>
+      </div>
     </div>
   )
 }

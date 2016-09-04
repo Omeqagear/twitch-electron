@@ -4,8 +4,8 @@ import styles from './channel.css'
 const Channel = (props) => {
   return (
     <div onClick={props.onClick.bind(this, props.data)} className={styles.className}>
-      <img src={props.data.logo} />
-      <p>{props.data.name}</p>
+      <img className={styles.bg} src={props.data.logo} />
+      <p className={styles.title}>{props.data.name}</p>
     </div>
   )
 }

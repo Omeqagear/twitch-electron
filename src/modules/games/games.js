@@ -35,7 +35,7 @@ export const reducer = (state = initialState, action) => {
   }
 }
 
-export const Games = (props) => {
+const Games = (props) => {
   return (
     <div className={styles.wrapper}>
       <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>GAMES</h1>
@@ -52,3 +52,5 @@ Games.propTypes = {
   games: PropTypes.array,
   onClick: PropTypes.func
 }
+
+export default Games

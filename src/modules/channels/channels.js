@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from './following.css'
+import styles from './channels.css'
 import Twitch from '../../twitch'
 import Channel from './components/channel'
 
@@ -42,10 +42,10 @@ export const reducer = (state = initialState, action) => {
   }
 }
 
-export const Following = (props) => {
+const Channels = (props) => {
   return (
     <div className={styles.wrapper}>
-      <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>FOLLOWING</h1>
+      <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>CHANNELS</h1>
       <div className={styles.className}>
         {props.channels.map((data) => {
           return (<Channel onClick={props.onClick} key={data.channel._id} data={data.channel} />)
@@ -55,7 +55,9 @@ export const Following = (props) => {
   )
 }
 
-Following.propTypes = {
+Channels.propTypes = {
   channels: PropTypes.array,
   onClick: PropTypes.func
 }
+
+export default Channels

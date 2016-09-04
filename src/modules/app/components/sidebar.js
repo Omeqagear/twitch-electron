@@ -23,7 +23,7 @@ const Sidebar = (props) => {
       icon: 'search'
     },
     {
-      url: '/following',
+      url: '/channels',
       icon: 'favorite'
     },
     {
@@ -44,7 +44,7 @@ const Sidebar = (props) => {
             {links.map((link) => {
               return (
                 <li className={matchesPath(props.currentPath, link.url) ? styles.activeClass : ''} key={link.icon} onClick={props.onClick.bind(this, link.url)}>
-                  <i className="material-icons">{link.icon}</i>
+                  <i className='material-icons'>{link.icon}</i>
                 </li>
               )
             })}

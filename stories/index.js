@@ -1,15 +1,63 @@
+import GamesJSON from './games.json'
+import ChannelsJSON from './channels.json'
+import StreamsJSON from './streams.json'
+
 import React from 'react'
-import Api from './mockAPI'
 import { storiesOf, action } from '@kadira/storybook'
 import Chat from '../src/shared/chat/chat'
 import Hls from '../src/shared/hls/hls'
 import Play from '../src/modules/play/play'
+import Streams from '../src/modules/streams/streams'
 import Stream from '../src/modules/streams/components/stream'
-import Channel from '../src/modules/following/components/channel'
+import Channels from '../src/modules/channels/channels'
+import Channel from '../src/modules/channels/components/channel'
+import Games from '../src/modules/games/games'
 import Game from '../src/modules/games/components/game'
 import Header from '../src/modules/app/components/header'
 import Sidebar from '../src/modules/app/components/sidebar'
 import WindowMenu from '../src/modules/app/components/window-menu'
+
+storiesOf('Streams', module)
+.add('List', () => (
+  <Streams
+    streams={StreamsJSON.streams}
+    onClick={action('clicked')}
+  />
+))
+.add('Component', () => (
+  <Stream
+    data={StreamsJSON.streams[0]}
+    onClick={action('clicked')}
+  />
+))
+
+storiesOf('Games', module)
+.add('List', () => (
+  <Games
+    games={GamesJSON.top}
+    onClick={action('clicked')}
+  />
+))
+.add('Component', () => (
+  <Game
+    data={GamesJSON.top[0]}
+    onClick={action('clicked')}
+  />
+))
+
+storiesOf('Channels', module)
+.add('List', () => (
+  <Channels
+    channels={ChannelsJSON.follows}
+    onClick={action('clicked')}
+  />
+))
+.add('Component', () => (
+  <Channel
+    data={ChannelsJSON.follows[5].channel}
+    onClick={action('clicked')}
+  />
+))
 
 storiesOf('Components', module)
 .add('Header', () => (
@@ -30,24 +78,6 @@ storiesOf('Components', module)
       onClose={action('close')}
     />
   </Header>
-))
-.add('Stream', () => (
-  <Stream
-    data={Api.getStream()}
-    onClick={action('clicked')}
-  />
-))
-.add('Channel', () => (
-  <Channel
-    data={Api.getChannel()}
-    onClick={action('clicked')}
-  />
-))
-.add('Game', () => (
-  <Game
-    data={Api.getGame()}
-    onClick={action('clicked')}
-  />
 ))
 .add('Chat', () => (
   <Chat

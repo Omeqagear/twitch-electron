@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import Loader from 'react-loaders'
 import { connect } from 'react-redux'
-import { Following, actions } from './following'
+import Channels, { actions } from './channels'
 import { push } from 'react-router-redux'
 
-class FollowingContainer extends Component {
+class ChannelsContainer extends Component {
 
   constructor (props) {
     super(props)
@@ -21,22 +21,22 @@ class FollowingContainer extends Component {
 
   render () {
     return (
-      <div className="following-wrapper" style={{height: '100%', position: 'relative'}}>
-        { !this.props.channels.length ? (<Loader type="ball-pulse-sync" />) : (<Following onClick={this.onChannelClick} channels={this.props.channels} />) }
+      <div style={{height: '100%', position: 'relative'}}>
+        { !this.props.channels.length ? (<Loader type="ball-pulse-sync" />) : (<Channels onClick={this.onChannelClick} channels={this.props.channels} />) }
       </div>
     )
   }
 }
 
-FollowingContainer.propTypes = {
+ChannelsContainer.propTypes = {
   dispatch: PropTypes.func,
   channels: PropTypes.array
 }
 
 const mapStateToProps = (state) => {
   return {
-    channels: state.following
+    channels: state.channels
   }
 }
 
-export default connect(mapStateToProps)(FollowingContainer)
+export default connect(mapStateToProps)(ChannelsContainer)
