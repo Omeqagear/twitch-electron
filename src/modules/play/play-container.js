@@ -7,8 +7,8 @@ import keymaster from 'keymaster'
 
 class PlayContainer extends Component {
 
-	constructor (props) {
-		super(props)
+  constructor (props) {
+    super(props)
     this.fetchUrl       = this.fetchUrl.bind(this)
     this.onTimeUpdate   = this.onTimeUpdate.bind(this)
     this.onVolumeChange = this.onVolumeChange.bind(this)
@@ -16,32 +16,32 @@ class PlayContainer extends Component {
     this.increaseVolume = this.increaseVolume.bind(this)
     this.decreaseVolume = this.decreaseVolume.bind(this)
     this.toggleChat     = this.toggleChat.bind(this)
-	}
+  }
 
-	fetchUrl () {
-		const { user, video } = this.props.params
+  fetchUrl () {
+    const { user, video } = this.props.params
     this.props.dispatch(actions.clearUrl())
     this.props.dispatch(actions.getUrl(user, video))
-	}
+  }
 
-	componentDidMount () {
-		this.fetchUrl()
-		this.props.dispatch(appActions.hideUi(true))
+  componentDidMount () {
+    this.fetchUrl()
+    this.props.dispatch(appActions.hideUi(true))
     keymaster('r', this.fetchUrl)
     keymaster('m', this.toggleMute)
     keymaster('0', this.increaseVolume)
     keymaster('9', this.decreaseVolume)
     keymaster('c', this.toggleChat)
-	}
+  }
 
-	componentWillUnmount () {
-		this.props.dispatch(appActions.hideUi(false))
+  componentWillUnmount () {
+    this.props.dispatch(appActions.hideUi(false))
     keymaster.unbind('r', this.fetchUrl)
     keymaster.unbind('m', this.toggleMute)
     keymaster.unbind('0', this.increaseVolume)
     keymaster.unbind('9', this.decreaseVolume)
     keymaster.unbind('c', this.toggleChat)
-	}
+  }
 
   toggleMute () {
     this.props.dispatch(actions.toggleMute())
@@ -69,26 +69,26 @@ class PlayContainer extends Component {
     this.props.dispatch(actions.toggleChat())
   }
 
-	render () {
+  render () {
 
-		const { video, user } = this.props.params
-		const timestamp = this.props.timestamps[video]
+    const { video, user } = this.props.params
+    const timestamp = this.props.timestamps[video]
     const { url, muted, volume, chat, loading } = this.props
 
-		return (
-			<div style={{height: '100%', position: 'relative'}}>
-				{ loading ? (
+    return (
+      <div style={{height: '100%', position: 'relative'}}>
+        { loading ? (
           <Loader type="ball-pulse-sync" />
         ) : (<Play onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} volume={volume} timestamp={timestamp} url={url} muted={muted} chat={chat} user={user} />) }
-			</div>
-		)
-	}
+      </div>
+    )
+  }
 }
 
 PlayContainer.propTypes = {
-	dispatch: PropTypes.func,
-	params: PropTypes.object,
-	timestamps: PropTypes.object,
+  dispatch: PropTypes.func,
+  params: PropTypes.object,
+  timestamps: PropTypes.object,
   loading: PropTypes.bool,
   url: PropTypes.string,
   muted: PropTypes.bool,
@@ -97,14 +97,14 @@ PlayContainer.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-	return {
-		timestamps: state.play.timestamps,
+  return {
+    timestamps: state.play.timestamps,
     loading: state.play.loading,
     url: state.play.url,
     muted: state.play.muted,
     volume: state.play.volume,
     chat: state.play.chat
-	}
+  }
 }
 
 export default connect(mapStateToProps)(PlayContainer)

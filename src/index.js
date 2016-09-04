@@ -11,17 +11,17 @@ const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 
 if (location.hash.includes('access_token')) {
-	localStorage.setItem('AUTH_TOKEN', location.hash.replace('#/').split('=')[1].split('&')[0])
-	hashHistory.push('/')
+  localStorage.setItem('AUTH_TOKEN', location.hash.replace('#/').split('=')[1].split('&')[0])
+  hashHistory.push('/')
 }
 
 const renderApp = () => {
-	render(
-		<Provider store={store}>
-			<Router history={history} routes={routes} />							
-		</Provider>,
-		document.getElementById('root')
-	);
+  render(
+    <Provider store={store}>
+      <Router history={history} routes={routes} />
+    </Provider>,
+    document.getElementById('root')
+  );
 }
 
 renderApp()

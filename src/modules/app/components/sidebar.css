@@ -1,62 +1,62 @@
 .container {
-	width: 50px;
-	height: 100vh;
+  width: 50px;
+  height: 100vh;
 }
 
 .className {
-	height: 100%;
-	background: #262626;
-	overflow: hidden;
-	width: 100%;
-	transition: .3s all ease;
-	background: #F1F1F1;
-	border-right: 1px solid rgba(0, 0, 0, 0.1);
+  height: 100%;
+  background: #262626;
+  overflow: hidden;
+  width: 100%;
+  transition: .3s all ease;
+  background: #F1F1F1;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .className ul {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  list-style-type: none;
 }
 
 .className ul li {
-	cursor: pointer;
-	padding: 0 5px;
-	transition: .3s all ease;
-	text-align: center;
-	height: 50px;
-	display: block;
-	padding: 30px 0;
-	position: relative;
-	cursor: pointer;
-	-webkit-app-region: no-drag;
+  cursor: pointer;
+  padding: 0 5px;
+  transition: .3s all ease;
+  text-align: center;
+  height: 50px;
+  display: block;
+  padding: 30px 0;
+  position: relative;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
 }
 
 .activeClass {
-	background: black;
+  background: black;
 }
 
 .className li:hover {
-	background: black;
+  background: black;
 }
 
 .className li:hover i {
-	color: white;
+  color: white;
 }
 
 .activeClass i {
-	color: white!important;
+  color: white!important;
 }
 
 .className i {
-	cursor: pointer;
-	font-size: 32px;
-	transition: .3s all ease;
-	display: block;
-	position: absolute;
-	top: 50%;
-	color: black;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
+  cursor: pointer;
+  font-size: 32px;
+  transition: .3s all ease;
+  display: block;
+  position: absolute;
+  top: 50%;
+  color: black;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }

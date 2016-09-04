@@ -1,5 +1,5 @@
 body, html {
-	font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -13,22 +13,22 @@ body {
 }
 
 h1, h2, h3 {
-	color: black;
-	font-weight: 900;
+  color: black;
+  font-weight: 900;
 }
 
 ::-webkit-scrollbar { width: 0 !important; }
 
 #main {
-	height: 100%;
+  height: 100%;
   width: 100%;
 }
 
 #view {
-	height: 100vh;
-	position: relative;
-	overflow-y: auto;
-	background: #F1F1F1;
+  height: 100vh;
+  position: relative;
+  overflow-y: auto;
+  background: #F1F1F1;
 }
 
 #main-container {
@@ -44,7 +44,7 @@ h2 {
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 p {
@@ -68,21 +68,21 @@ a:hover {
 }
 
 .loader {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateY(-50%) translateX(-50%);
-	text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  text-align: center;
 }
 
 .loader p {
-	margin-bottom: 30px;
-	color: black;
+  margin-bottom: 30px;
+  color: black;
 }
 
 .loader > div {
-	left: -10px;
-	position: relative;
+  left: -10px;
+  position: relative;
 }
 
 .ball-pulse > div:nth-child(1) {

@@ -10,12 +10,12 @@ import { reducer as gamesReducer } from './modules/games/games'
 import { reducer as searchReducer }  from './modules/search/search'
 
 export default combineReducers({
-	vods: vodsReducer,
-	play: playReducer,
-	streams: streamsReducer,
-	following: followingReducer,
-	games: gamesReducer,
-	search: searchReducer,
-	app: appReducer,
-	routing
+  vods: vodsReducer,
+  play: playReducer,
+  streams: streamsReducer,
+  following: followingReducer,
+  games: gamesReducer,
+  search: searchReducer,
+  app: appReducer,
+  routing
 })

@@ -11,47 +11,47 @@ const initialState = {
 }
 
 export const actions = {
-	getVods: (user) => {
-		return dispatch => {
-			dispatch({ type: GET_VODS, user: user })
-			Twitch.api({url: `channels/${user}/videos`, params: {broadcasts: true}}).then(
-				(res) => {
-					dispatch({type: GET_VODS_SUCCESS, data: {user: user, videos: res.data.videos}})
-				},
-				() => {
-					dispatch({type: GET_VODS_ERROR})
-				}
-			)
-		}
-	},
+  getVods: (user) => {
+    return dispatch => {
+      dispatch({ type: GET_VODS, user: user })
+      Twitch.api({url: `channels/${user}/videos`, params: {broadcasts: true}}).then(
+        (res) => {
+          dispatch({type: GET_VODS_SUCCESS, data: {user: user, videos: res.data.videos}})
+        },
+        () => {
+          dispatch({type: GET_VODS_ERROR})
+        }
+      )
+    }
+  },
 }
 
 export const reducer = (state = initialState, action) => {
-	switch (action.type) {
-	case GET_VODS_SUCCESS:
-		return Object.assign({}, state, {[action.data.user]: action.data.videos})
-	default:
-		return Object.assign({}, state)
-	}
+  switch (action.type) {
+  case GET_VODS_SUCCESS:
+    return Object.assign({}, state, {[action.data.user]: action.data.videos})
+  default:
+    return Object.assign({}, state)
+  }
 }
 
 export const Vods = (props) => {
-	return (
-		<div className={styles.wrapper}>
-			<h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>{props.user}</h1>
-			<div className={styles.className}>
-				{props.videos.map((vod) => {
-					return (
-						<Vod onClick={props.onVodClick} key={vod._id} data={vod} />
-					)
-				})}
-			</div>
-		</div>
-	)
+  return (
+    <div className={styles.wrapper}>
+      <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>{props.user}</h1>
+      <div className={styles.className}>
+        {props.videos.map((vod) => {
+          return (
+            <Vod onClick={props.onVodClick} key={vod._id} data={vod} />
+          )
+        })}
+      </div>
+    </div>
+  )
 }
 
 Vods.propTypes = {
-	user: PropTypes.string,
-	videos: PropTypes.array,
-	onVodClick: PropTypes.func
+  user: PropTypes.string,
+  videos: PropTypes.array,
+  onVodClick: PropTypes.func
 }

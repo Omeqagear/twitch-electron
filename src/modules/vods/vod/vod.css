@@ -1,67 +1,67 @@
 .className {
-	overflow: hidden;
-	cursor: pointer;
-	position: relative;
-	color: #28214e;
-	width: 25%;
-	margin: 10px;
-	float: left;
-	background-repeat: no-repeat;
-	min-width: 400px;
-	overflow: hidden;
-	flex-grow: 1;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  color: #28214e;
+  width: 25%;
+  margin: 10px;
+  float: left;
+  background-repeat: no-repeat;
+  min-width: 400px;
+  overflow: hidden;
+  flex-grow: 1;
 }
 
 .className h3 {
-	position: absolute;
-	z-index: 10;
-	width: 100%;
-	color: white;
-	padding: 20px;
-	top: 0px;
-	margin: 0;
-	left: 0;
-	transition: .2s all ease;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  color: white;
+  padding: 20px;
+  top: 0px;
+  margin: 0;
+  left: 0;
+  transition: .2s all ease;
 }
 
 .className p {
-	/*display: none;*/
-	position: absolute;
-	z-index: 10;
-	width: 100%;
-	color: white;
-	padding: 20px;
-	bottom: 0px;
-	left: 0;
-	font-size: 20px;
-	margin: 0;
-	transition: .2s all ease;
+  /*display: none;*/
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  color: white;
+  padding: 20px;
+  bottom: 0px;
+  left: 0;
+  font-size: 20px;
+  margin: 0;
+  transition: .2s all ease;
 }
 
 .className img {
-	transition: .2s all ease;
-	width: 100%;
-	object-fit: cover;
-	vertical-align: top;
-	-webkit-backface-visibility: hidden;
+  transition: .2s all ease;
+  width: 100%;
+  object-fit: cover;
+  vertical-align: top;
+  -webkit-backface-visibility: hidden;
 }
 
 .className div {
-	opacity: 0;
-	transition: .2s all ease;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	position: absolute;
-	text-transform: uppercase;
-	border: 2px solid white;
-	padding: 20px 40px;
-	color: white;
-	background: linear-gradient(to top, rgba(0,0,0,.5) 20%,rgba(125,185,232,0) 100%);
-	text-align: center;
+  opacity: 0;
+  transition: .2s all ease;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  text-transform: uppercase;
+  border: 2px solid white;
+  padding: 20px 40px;
+  color: white;
+  background: linear-gradient(to top, rgba(0,0,0,.5) 20%,rgba(125,185,232,0) 100%);
+  text-align: center;
 }
 
 .className:hover div {
-	opacity: 1;
+  opacity: 1;
 }

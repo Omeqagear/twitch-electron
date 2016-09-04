@@ -9,13 +9,13 @@ import GamesContainer from './modules/games/games-container'
 import SearchContainer from './modules/search/search-container'
 
 export default (
-	<Route path="/" component={AppContainer}>
+  <Route path="/" component={AppContainer}>
     <IndexRoute component={StreamsContainer} />
-		<Route path="/play/:user(/:video)" component={PlayContainer} />
-		<Route path="/vods/:user" component={VodsContainer} />
-		<Route path="/following" component={FollowingContainer} />
-		<Route path="/games" component={GamesContainer} />
-		<Route path="/streams/:game" component={StreamsContainer} />
-		<Route path="/search" component={SearchContainer} />
-	</Route>
+    <Route path="/play/:user(/:video)" component={PlayContainer} />
+    <Route path="/vods/:user" component={VodsContainer} />
+    <Route path="/following" component={FollowingContainer} />
+    <Route path="/games" component={GamesContainer} />
+    <Route path="/streams/:game" component={StreamsContainer} />
+    <Route path="/search" component={SearchContainer} />
+  </Route>
 )
