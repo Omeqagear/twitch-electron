@@ -10,8 +10,11 @@ import './index.scss';
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 
-if (location.hash.includes('access_token')) {
-  localStorage.setItem('AUTH_TOKEN', location.hash.replace('#/').split('=')[1].split('&')[0])
+if ( location.hash.includes( 'access_token' ) ) {
+  localStorage.setItem(
+    'AUTH_TOKEN',
+    location.hash.replace('#/').split('=')[1].split('&')[0]
+  )
   hashHistory.push('/')
 }
 

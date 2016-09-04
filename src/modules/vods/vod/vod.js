@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react'
-
 import styles from './vod.css'
 
-const Vod = (props) => {
+export default function Vod(props) {
   return (
     <div className={styles.className}>
       <img src={props.data.preview} />
@@ -19,5 +18,3 @@ Vod.propTypes = {
   onClick: PropTypes.func,
   data: PropTypes.object
 }
-
-export default Vod

@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-
 import styles from './sidebar.css'
 
 const matchesPath = (path, url) => {
@@ -11,31 +10,30 @@ const matchesPath = (path, url) => {
   return path == url
 }
 
-const Sidebar = (props) => {
+const links = [
+  {
+    url: 'back',
+    icon: 'arrow_back'
+  },
+  {
+    url: '/search',
+    icon: 'search'
+  },
+  {
+    url: '/channels',
+    icon: 'favorite'
+  },
+  {
+    url: '/',
+    icon: 'videocam'
+  },
+  {
+    url: '/games',
+    icon: 'videogame_asset'
+  }
+]
 
-  const links = [
-    {
-      url: 'back',
-      icon: 'arrow_back'
-    },
-    {
-      url: '/search',
-      icon: 'search'
-    },
-    {
-      url: '/channels',
-      icon: 'favorite'
-    },
-    {
-      url: '/',
-      icon: 'videocam'
-    },
-    {
-      url: '/games',
-      icon: 'videogame_asset'
-    }
-  ]
-
+export default function Sidebar(props) {
   return (
     <div className={styles.container} style={{display: !props.show ? 'block' : 'none'}}>
       <div id="sidebar" className={styles.className}>
@@ -60,5 +58,3 @@ Sidebar.propTypes = {
   onClick: PropTypes.func.isRequired,
   currentPath: PropTypes.string.isRequired
 }
-
-export default Sidebar

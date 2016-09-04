@@ -1,15 +1,7 @@
 import React, { PropTypes } from 'react'
 import styles from './stream.css'
 
-const Stream = (props) => {
-
-  const getExcerpt = (str, len, end) => {
-    if (str.length <= len) {
-      return str
-    }
-    return str.substr(0, len) + end
-  }
-
+export default function Stream(props) {
   return (
     <div className={styles.className} onClick={props.onClick.bind(this, props.data)}>
       <img className={styles.bg} src={props.data.preview.large} />
@@ -35,5 +27,3 @@ Stream.propTypes = {
   data: PropTypes.object,
   onClick: PropTypes.func
 }
-
-export default Stream

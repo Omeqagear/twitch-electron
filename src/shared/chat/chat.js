@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const Chat = (props) => {
+export default function Chat(props) {
   return (
     <iframe frameBorder="0"
       scrolling="no"
@@ -19,5 +19,3 @@ Chat.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string
 }
-
-export default Chat
