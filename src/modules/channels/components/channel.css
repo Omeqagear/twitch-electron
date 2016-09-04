@@ -3,7 +3,7 @@
   cursor: pointer;
   position: relative;
   color: #28214e;
-  width: 15%;
+  width: 30%;
   margin: 10px;
   float: left;
   background-repeat: no-repeat;
@@ -33,4 +33,7 @@
   margin: 0;
   height: 100%;
   background: linear-gradient(to bottom, rgba(0,0,0,.5) 20%,rgba(125,185,232,0) 100%);
+  text-transform: uppercase;
+  font-weight: 200;
+  text-align: center;
 }
