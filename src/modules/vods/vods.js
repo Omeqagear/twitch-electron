@@ -14,13 +14,14 @@ export const actions = {
 	getVods: (user) => {
 		return dispatch => {
 			dispatch({ type: GET_VODS, user: user })
-			Twitch.api({url: `channels/${user}/videos`, params: {broadcasts: true}}, (error, channel) => {
-				if (error) {
+			Twitch.api({url: `channels/${user}/videos`, params: {broadcasts: true}}).then(
+				(res) => {
+					dispatch({type: GET_VODS_SUCCESS, data: {user: user, videos: res.data.videos}})
+				},
+				() => {
 					dispatch({type: GET_VODS_ERROR})
-				} else {
-					dispatch({type: GET_VODS_SUCCESS, data: {user: user, videos: channel.videos}})
 				}
-			})
+			)
 		}
 	},
 }

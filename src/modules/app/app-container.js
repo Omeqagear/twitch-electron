@@ -15,6 +15,7 @@ class AppContainer extends Component {
 		this.onMaximise = this.onMaximise.bind(this)
 		this.onClose    = this.onClose.bind(this)
 		this.navigate   = this.navigate.bind(this)
+		this.back       = this.back.bind(this)
 	}
 
 	componentDidMount () {
@@ -41,6 +42,10 @@ class AppContainer extends Component {
 
 	onClose () {
 		window.close()
+	}
+
+	back () {
+		this.props.dispatch(goBack())
 	}
 
 	navigate (url) {

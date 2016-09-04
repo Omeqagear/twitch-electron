@@ -11,18 +11,21 @@ export const actions = {
 	getFollowedChannels: () => {
 		return dispatch => {
 			dispatch({ type: GET_FOLLOWED_CHANNELS })
-			Twitch.api({method: 'channel'}, function(error, user) {
-				if (error) {
-					dispatch({type: GET_FOLLOWED_CHANNELS_ERROR})
+			Twitch.api({url: 'channel'}).then(
+				(userRes) => {
+					Twitch.api({url: `/users/${userRes.data.name}/follows/channels`, params: {limit: 100}}).then(
+						(res) => {
+							dispatch({type: GET_FOLLOWED_CHANNELS_SUCCESS, data: res.data.follows})
+						},
+						() => {
+							dispatch({type: GET_FOLLOWED_CHANNELS_ERROR})
+						}
+					)
+				},
+				(err) => {
+					dispatch({type: GET_FOLLOWED_CHANNELS_ERROR, data: err.data})
 				}
-				Twitch.api({url: `/users/${user.name}/follows/channels`, params: {limit: 100}}, function(error, data) {
-					if (error) {
-						dispatch({type: GET_FOLLOWED_CHANNELS_ERROR})
-					} else {
-						dispatch({type: GET_FOLLOWED_CHANNELS_SUCCESS, data: data.follows})
-					}
-				})
-			});
+			)
 		}
 	},
 }

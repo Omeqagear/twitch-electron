@@ -11,13 +11,14 @@ export const actions = {
 	getFollowedGames: () => {
 		return dispatch => {
 			dispatch({ type: GET_FOLLOWED_GAMES })
-			Twitch.api({method: 'games/top', params: {limit: 100}}, function(error, data) {
-				if (error) {
-					dispatch({type: GET_FOLLOWED_GAMES_ERROR, data: error})
-				} else {
-					dispatch({type: GET_FOLLOWED_GAMES_SUCCESS, data: data.top})
+			Twitch.api({url: 'games/top', params: {limit: 100}}).then(
+				(res) => {
+					dispatch({type: GET_FOLLOWED_GAMES_SUCCESS, data: res.data.top})
+				},
+				(err) => {
+					dispatch({type: GET_FOLLOWED_GAMES_ERROR, data: err})
 				}
-			})
+			)
 		}
 	},
 }

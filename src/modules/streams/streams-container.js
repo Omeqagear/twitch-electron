@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
 import Streams, { actions } from './streams'
+import { actions as appActions } from '../app/app'
 import Loader from 'react-loaders'
 import { createWindow } from '../../window'
 import keymaster from 'keymaster'
@@ -12,6 +13,9 @@ class StreamsContainer extends Component {
     super(props)
     this.onClick = this.onClick.bind(this)
     this.load    = this.load.bind(this)
+    if (this.props.routeParams.access_token) {
+      this.props.dispatch(appActions.setAccessToken(this.props.routeParams.access_token))
+    }
   }
 
   componentDidMount () {
@@ -51,7 +55,7 @@ class StreamsContainer extends Component {
 StreamsContainer.propTypes = {
   dispatch: PropTypes.func,
   streams: PropTypes.array,
-  routeParams: PropTypes.object
+  routeParams: PropTypes.object,
 }
 
 const mapStateToProps = (state) => {

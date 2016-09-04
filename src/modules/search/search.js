@@ -28,37 +28,40 @@ export const actions = {
 	queryStreams: (query) => {
 		return dispatch => {
 			dispatch({ type: GET_STREAMS })
-			Twitch.api({method: 'search/streams', params: {limit: 100, query}}, function(error, data) {
-				if (error) {
-					dispatch({type: GET_STREAMS_ERROR, data: error})
-				} else {
-					dispatch({type: GET_STREAMS_SUCCESS, data: data.streams})
+			Twitch.api({url: 'search/streams', params: {limit: 100, query}}).then(
+				(res) => {
+					dispatch({type: GET_STREAMS_SUCCESS, data: res.data.streams})
+				},
+				(err) => {
+					dispatch({type: GET_STREAMS_ERROR, data: err.data})
 				}
-			})
+			)
 		}
 	},
 	queryChannels: (query) => {
 		return dispatch => {
 			dispatch({ type: GET_CHANNELS })
-			Twitch.api({method: 'search/channels', params: {limit: 100, query}}, function(error, data) {
-				if (error) {
-					dispatch({type: GET_CHANNELS_ERROR, data: error})
-				} else {
-					dispatch({type: GET_CHANNELS_SUCCESS, data: data.channels})
+			Twitch.api({url: 'search/channels', params: {limit: 100, query}}).then(
+				(res) => {
+					dispatch({type: GET_CHANNELS_SUCCESS, data: res.data.channels})
+				},
+				(err) => {
+					dispatch({type: GET_CHANNELS_ERROR, data: err.data})
 				}
-			})
+			)
 		}
 	},
 	queryGames: (query) => {
 		return dispatch => {
 			dispatch({ type: GET_GAMES })
-			Twitch.api({method: 'search/games', params: {limit: 100, query, type: 'suggest'}}, function(error, data) {
-				if (error) {
-					dispatch({type: GET_GAMES_ERROR, data: error})
-				} else {
-					dispatch({type: GET_GAMES_SUCCESS, data: data.games})
+			Twitch.api({url: 'search/games', params: {limit: 100, query, type: 'suggest'}}).then(
+				(res) => {
+					dispatch({type: GET_GAMES_SUCCESS, data: res.data.games})
+				},
+				(err) => {
+					dispatch({type: GET_GAMES_ERROR, data: err.data})
 				}
-			})
+			)
 		}
 	}
 }

@@ -65,9 +65,9 @@ class SearchContainer extends Component {
 
 SearchContainer.propTypes = {
 	dispatch: PropTypes.func,
-	streams: PropTypes.object,
-	games: PropTypes.object,
-	channels: PropTypes.object
+	streams: PropTypes.array,
+	games: PropTypes.array,
+	channels: PropTypes.array
 }
 
 const mapStateToProps = (state) => {

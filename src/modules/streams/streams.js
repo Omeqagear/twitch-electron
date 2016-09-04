@@ -13,26 +13,27 @@ export const actions = {
 	getStreams: () => {
 		return dispatch => {
 			dispatch({ type: GET_STREAMS })
-			Twitch.api({url: 'streams/followed'}, (error, data) => {
-				if (error) {
-					dispatch({type: GET_STREAMS_ERROR})
-				} else {
-					dispatch({type: GET_STREAMS_SUCCESS, data: data.streams})
+			Twitch.api({url: 'streams/followed'}).then(
+				(res) => {
+					dispatch({type: GET_STREAMS_SUCCESS, data: res.data.streams})
+				},
+				(err) => {
+					dispatch({type: GET_STREAMS_SUCCESS, data: err.data})
 				}
-			})
+			)
 		}
 	},
 	getStreamsForGame: (game) => {
-		const name = encodeURIComponent(game).replace(/\'/g, '%27')
 		return dispatch => {
 			dispatch({ type: GET_STREAMS })
-			Twitch.api({url: 'streams', params: {game: name}}, (error, data) => {
-				if (error) {
+			Twitch.api({url: 'streams', params: {game: game}}).then(
+				(res) => {
+					dispatch({type: GET_STREAMS_SUCCESS, data: res.data.streams})
+				},
+				() => {
 					dispatch({type: GET_STREAMS_ERROR})
-				} else {
-					dispatch({type: GET_STREAMS_SUCCESS, data: data.streams})
 				}
-			})
+			)
 		}
 	}
 }
