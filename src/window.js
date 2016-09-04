@@ -1,7 +1,6 @@
 const { BrowserWindow } = require('electron').remote
 
 export const createWindow = (url) => {
-	const rootUrl = require('electron').remote.getCurrentWindow().webContents.getURL().split('#')
 	const win = new BrowserWindow({
 		show: true,
 		width: 1024,
@@ -13,5 +12,5 @@ export const createWindow = (url) => {
 			webSecurity: false,
 		},
 	})
-	win.loadURL(rootUrl[0] + '#' + url)
+	win.loadURL(`http://localhost:6005/#${url}`)
 }

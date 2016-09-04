@@ -5,7 +5,6 @@ import WindowMenu from './components/window-menu'
 import styles from './app.css'
 
 const HIDE_UI = 'HIDE_UI'
-const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN'
 
 const initialState = {
 	hideUi: false
