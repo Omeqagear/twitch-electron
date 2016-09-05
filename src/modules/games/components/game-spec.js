@@ -1,6 +1,6 @@
 import test from 'ava'
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, render } from 'enzyme'
 import Game from './game'
 
 const mockData = {
@@ -27,12 +27,22 @@ const mockData = {
   channels: 2021
 }
 
-const wrapper = shallow(
-  <Game
-    data={mockData}
-    onClick={() => {}} />
-);
+
 
 test('renders without exploding', t => {
+  const wrapper = shallow(
+    <Game
+      data={mockData}
+      onClick={() => {}} />
+  );
   t.is(wrapper.length, 1)
+})
+
+test('renders img', t => {
+  const wrapper = render(
+    <Game
+      data={mockData}
+      onClick={() => {}} />
+  );
+  t.is(wrapper.find(`img`).length, 1)
 })

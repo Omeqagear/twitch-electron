@@ -6,5 +6,4 @@ global.window = document.defaultView
 global.navigator = window.navigator
 
 const noop = function () {}
-
 require.extensions['.css'] = noop

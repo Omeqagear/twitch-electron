@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import NumberFormat from 'react-number-format'
+import format from 'format-number'
 import styles from './game.css'
 
 export default function Game(props) {
@@ -12,10 +12,7 @@ export default function Game(props) {
       <div className={styles.bottom}>
         <div className={styles.viewers}>
           <i className='material-icons'>person</i>
-          <NumberFormat
-            value={props.data.viewers}
-            displayType={'text'}
-            thousandSeperator={true} />
+          <span>{format(props.data.viewers)}</span>
         </div>
       </div>
     </div>

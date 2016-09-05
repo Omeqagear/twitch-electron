@@ -19,7 +19,7 @@
     "package": "webpack -p --define process.env.NODE_ENV='\"production\"' && electron-packager . --all --out release --overwrite --asar --name Twitch",
     "dev": "ENV=development concurrently -k 'webpack -w --colors' 'npm start'",
     "lint": "eslint .",
-    "test": "ava --verbose",
+    "test": "NODE_ENV=AVA ava --verbose",
     "watch:test": "npm run test -- --watch",
     "storybook": "ENV=development start-storybook -p 6006 -s ./public/",
     "build-storybook": "build-storybook"
@@ -59,13 +59,13 @@
   "dependencies": {
     "axios": "^0.14.0",
     "express": "^4.14.0",
+    "format-number": "^2.0.1",
     "hls.js": "^0.6.2-4",
     "jquery": "^2.2.1",
     "keymaster": "^1.6.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-loaders": "^2.1.1",
-    "react-number-format": "^0.1.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",
     "react-router-redux": "^4.0.5",
