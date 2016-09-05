@@ -47,9 +47,9 @@ class PlayContainer extends Component {
     this.props.dispatch(actions.toggleMute())
   }
 
-  onTimeUpdate (e) {
+  onTimeUpdate (currentTime) {
     if (this.props.params.video) {
-      this.props.dispatch(actions.updateTimestamp(this.props.params.video, e.target.currentTime))
+      this.props.dispatch(actions.updateTimestamp(this.props.params.video, currentTime))
     }
   }
 

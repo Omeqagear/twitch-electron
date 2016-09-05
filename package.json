@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ENV=development electron .",
     "build": "webpack",
-    "package": "webpack -p --define process.env.NODE_ENV='\"production\"' && electron-packager . --all --out release --overwrite --asar",
+    "package": "webpack -p --define process.env.NODE_ENV='\"production\"' && electron-packager . --all --out release --overwrite --asar --name Twitch",
     "dev": "ENV=development concurrently -k 'webpack -w --colors' 'npm start'",
     "test": "mocha setup.js src/**/*-spec.js src/**/**/*-spec.js",
     "storybook": "ENV=development start-storybook -p 6006 -s ./public/",
