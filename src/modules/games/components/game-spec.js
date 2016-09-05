@@ -38,11 +38,30 @@ test('renders without exploding', t => {
   t.is(wrapper.length, 1)
 })
 
-test('renders img', t => {
+test('renders img with src', t => {
   const wrapper = render(
     <Game
       data={mockData}
       onClick={() => {}} />
   );
-  t.is(wrapper.find(`img`).length, 1)
+  t.is(wrapper.find('img').length, 1)
+  t.is(wrapper.find('img').attr('src'), mockData.game.box.large)
+})
+
+test('renders with title', t => {
+  const wrapper = render(
+    <Game
+      data={mockData}
+      onClick={() => {}} />
+  );
+  t.is(wrapper.find('p').text(), mockData.game.name)
+})
+
+test('renders viewers with format', t => {
+  const wrapper = render(
+    <Game
+      data={mockData}
+      onClick={() => {}} />
+  );
+  t.is(wrapper.find('span').text(), '235,090')
 })

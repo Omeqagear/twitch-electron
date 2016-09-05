@@ -12,7 +12,7 @@ export default function Game(props) {
       <div className={styles.bottom}>
         <div className={styles.viewers}>
           <i className='material-icons'>person</i>
-          <span>{format(props.data.viewers)}</span>
+          <span>{format()(props.data.viewers)}</span>
         </div>
       </div>
     </div>
