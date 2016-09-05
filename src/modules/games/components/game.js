@@ -5,7 +5,7 @@ import styles from './game.css'
 export default function Game(props) {
   return (
     <div
-      onClick={props.onClick.bind(this, props.data)}
+      onClick={props.onClick.bind(this, props.data.game)}
       className={styles.className}>
       <img className={styles.bg} src={props.data.game.box.large} />
       <p className={styles.title}>{props.data.game.name}</p>
