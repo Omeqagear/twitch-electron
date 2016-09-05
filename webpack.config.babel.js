@@ -5,7 +5,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const extractSASS = new ExtractTextPlugin('styles/[name].css')
 
-module.exports = {
+// Base config
+
+let config = {
   entry: [
     './src/index.js'
   ],
@@ -68,3 +70,26 @@ module.exports = {
   },
   target: 'electron-renderer'
 }
+
+
+// Production config
+
+if (process.env.ENV == 'production') {
+  config.plugins = config.plugins.concat([
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        screw_ie8: true,
+        warnings: false
+      }
+    }),
+    new ExtractTextPlugin('styles/modules.css', { allChunks: true })
+  ])
+  delete config.module.loaders[3].loaders
+  config.module.loaders[3].loader = ExtractTextPlugin.extract(
+    'style-loader',
+    'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+  )
+}
+
+module.exports = config
