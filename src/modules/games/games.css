@@ -4,6 +4,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   padding: 10px 10px;
+  margin-bottom: 50px;
 }
 
 .wrapper {

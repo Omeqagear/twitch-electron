@@ -128,7 +128,7 @@ export class Search extends Component {
           })}
           {this.props.type == 'channels' && this.props.channels.map((channel) => {
             return (
-              <Channel key={channel._id} onChannelClick={this.props.onClick} data={channel} />
+              <Channel key={channel._id} onClick={this.props.onClick} data={channel} />
             )
           })}
           {this.props.type == 'games' && this.props.games.map((game) => {
