@@ -3,7 +3,9 @@ import React, { PropTypes } from 'react'
 import Header from './components/header'
 // import WindowMenu from './components/window-menu'
 import styles from './app.css'
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 
@@ -33,7 +35,7 @@ export const reducer = (state = initialState, action) => {
 
 export const App = (props) => {
   return (
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <div id="main">
         <Header show={props.hideUi}></Header>
         <div className={styles.container}>

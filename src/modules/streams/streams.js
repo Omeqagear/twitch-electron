@@ -51,9 +51,6 @@ export const reducer = (state = initialState, action) => {
 const Streams = (props) => {
   return (
     <div className={styles.wrapper}>
-      <Toolbar>
-          <ToolbarTitle style={{color: 'black'}} text='Streams' />
-      </Toolbar>
       <div className={styles.className}>
         {props.streams.map((stream) => {
           return (

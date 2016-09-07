@@ -6,10 +6,10 @@ body {
   position: relative;
   color: white;
   height: 100vh;
-  background-color: #F1F1F1;
   overflow-y: hidden;
   padding: 0;
   margin: 0;
+  background: #212121;
 }
 
 h1, h2, h3 {
@@ -28,7 +28,6 @@ h1, h2, h3 {
   height: 100vh;
   position: relative;
   overflow-y: auto;
-  background: #F1F1F1;
 }
 
 #main-container {

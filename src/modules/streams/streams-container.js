@@ -8,6 +8,14 @@ import { createWindow } from '../../window'
 import keymaster from 'keymaster'
 import CircularProgress from 'material-ui/CircularProgress'
 
+const loaderStyle = {
+    position: 'fixed',
+    left: '50%',
+    top: '50%',
+    transform: 'translateX(-50%) translateY(-50%)',
+    margin: 0
+}
+
 class StreamsContainer extends Component {
 
   constructor (props) {
@@ -46,10 +54,8 @@ class StreamsContainer extends Component {
   }
 
   render () {
-
     const { streams } = this.props
-
-    return streams.length ? (<Streams onClick={this.onClick} streams={streams} />) : (<CircularProgress size={2} />)
+    return streams.length ? (<Streams onClick={this.onClick} streams={streams} />) : (<CircularProgress style={loaderStyle} size={2} />)
   }
 }
 
