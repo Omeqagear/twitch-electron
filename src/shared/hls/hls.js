@@ -16,7 +16,6 @@ export default class HLS extends Component {
   constructor (props) {
     super(props)
     this.onReady = this.onReady.bind(this)
-    this.onAttached = this.onAttached.bind(this)
     this.updateTimestamp = this.updateTimestamp.bind(this)
   }
 
@@ -29,11 +28,11 @@ export default class HLS extends Component {
     this.hls = new Hls({
       debug: false,
       appendErrorMaxRetry: 10,
+      startPosition: this.props.timestamp || -1
     })
 
     this.hls.loadSource(this.props.url)
     this.hls.attachMedia(this.video)
-    this.hls.on(Hls.Events.MEDIA_ATTACHED, this.onAttached)
     this.hls.on(Hls.Events.MANIFEST_PARSED, this.onReady)
     this.timeInterval = setInterval(this.updateTimestamp, 5000)
   }
@@ -42,20 +41,9 @@ export default class HLS extends Component {
     this.props.onTimeUpdate(this.video.currentTime)
   }
 
-  onAttached () {
-  }
-
   onReady () {
-    this.video.volume      = this.props.volume || 0.5
-    this.video.muted       = this.props.muted || false
+    this.video.volume = this.props.volume || 0.5
     this.video.play()
-    if (this.props.timestamp) {
-      setTimeout(() => {
-        this.video.pause()
-        this.video.currentTime = this.props.timestamp || 0
-        this.video.play()
-      }, 1500)
-    }
   }
 
   componentWillUnmount () {

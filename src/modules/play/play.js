@@ -108,7 +108,7 @@ const Play = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.play}>
-        <Hls {...props} />
+        {props.url && <Hls {...props} />}
         <div className={styles.controls}></div>
       </div>
       <div className={styles.chat} style={{display: props.chat ? 'block' : 'none'}}>
