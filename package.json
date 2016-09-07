@@ -60,7 +60,7 @@
     "axios": "^0.14.0",
     "express": "^4.14.0",
     "format-number": "^2.0.1",
-    "hls.js": "^0.6.2-4",
+    "hls.js": "0.5.46",
     "jquery": "^2.2.1",
     "keymaster": "^1.6.2",
     "react": "^15.3.1",
