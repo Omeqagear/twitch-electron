@@ -16,6 +16,7 @@ import Game from '../src/modules/games/components/game'
 import Header from '../src/modules/app/components/header'
 import Sidebar from '../src/modules/app/components/sidebar'
 import WindowMenu from '../src/modules/app/components/window-menu'
+import VideoControls from '../src/shared/video-controls/video-controls'
 
 storiesOf('Streams', module)
 .add('List', () => (
@@ -96,6 +97,9 @@ storiesOf('Components', module)
 ))
 
 storiesOf('Player', module)
+.add('VideoControls', () => (
+  <VideoControls />
+))
 .add('Player with chat', () => (
   <Play
     url='http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8'
