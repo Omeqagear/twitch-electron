@@ -7,7 +7,7 @@ import styles from './stream.css'
 
 export default function StreamCard (props) {
   return (
-    <Card style={{width: '25%', flexGrow: 1, margin: '10px', minWidth: '400px'}}>
+    <Card style={{width: '25%', flexGrow: 1, margin: '20px', minWidth: '400px'}}>
       <CardHeader
         title={props.data.channel.name}
         subtitle={props.data.channel.status}

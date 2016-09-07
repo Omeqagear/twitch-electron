@@ -6,9 +6,7 @@ import styles from './app.css'
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
-
+import { Menu, MainButton, ChildButton } from 'react-mfb'
 
 const HIDE_UI = 'HIDE_UI'
 
@@ -43,9 +41,17 @@ export const App = (props) => {
             {props.children}
           </div>
         </div>
-        <FloatingActionButton style={{position: 'fixed', bottom: 20, right: 20, zIndex: 1000}}>
-          <ContentAdd />
-        </FloatingActionButton>
+        <Menu effect='slidein' position='br' method='click'>
+          <MainButton iconResting="ion-plus-round" />
+          <ChildButton
+            icon="ion-monitor"
+            label="Following"
+            href="/#/channels" />
+          <ChildButton
+            icon="ion-monitor"
+            label="Streams"
+            href="/#/" />
+        </Menu>
       </div>
     </MuiThemeProvider>
   )

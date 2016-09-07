@@ -4,7 +4,8 @@
   position: relative;
   color: #28214e;
   width: 25%;
-  margin: 10px;
+  /*margin: 10px;*/
+  margin: 0;
   float: left;
   background-repeat: no-repeat;
   min-width: 400px;
