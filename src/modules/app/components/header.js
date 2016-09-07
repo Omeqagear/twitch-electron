@@ -1,19 +1,12 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import styles from './header.css'
+import AppBar from 'material-ui/AppBar'
 
-export default function Header(props) {
+export default function Header() {
   return (
-    <header
-      style={{display: !props.show ? 'block' : 'none'}}
-      className={styles.className}
-      onDoubleClick={props.doubleClick}>
-      {props.children}
-    </header>
+      <AppBar className={styles.className} showMenuIconButton={false} />
   )
 }
 
 Header.propTypes = {
-  show: PropTypes.bool,
-  doubleClick: PropTypes.func,
-  children: PropTypes.object
 }

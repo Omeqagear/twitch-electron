@@ -10,7 +10,7 @@ class AppContainer extends Component {
 
   constructor (props) {
     super(props)
-    
+
     this.onMinimize = this.onMinimize.bind(this)
     this.onMaximise = this.onMaximise.bind(this)
     this.onClose    = this.onClose.bind(this)

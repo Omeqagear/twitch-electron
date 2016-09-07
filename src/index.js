@@ -7,6 +7,9 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 import './index.scss';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin()
+
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 

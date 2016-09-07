@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react'
-import Sidebar from './components/sidebar'
+// import Sidebar from './components/sidebar'
 import Header from './components/header'
-import WindowMenu from './components/window-menu'
+// import WindowMenu from './components/window-menu'
 import styles from './app.css'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
+
 
 const HIDE_UI = 'HIDE_UI'
 
@@ -29,17 +33,19 @@ export const reducer = (state = initialState, action) => {
 
 export const App = (props) => {
   return (
-    <div id="main">
-      <Header show={props.hideUi}>
-        <WindowMenu show={process.platform !== 'darwin'} onMaximise={props.onMaximise} onMinimize={props.onMinimize} onClose={props.onClose} />
-      </Header>
-      <div className={styles.container}>
-        <Sidebar show={props.hideUi} currentPath={props.currentPath} onClick={props.onNavigate} />
-        <div className={styles.view}>
-          {props.children}
+    <MuiThemeProvider>
+      <div id="main">
+        <Header show={props.hideUi}></Header>
+        <div className={styles.container}>
+          <div className={styles.view}>
+            {props.children}
+          </div>
         </div>
+        <FloatingActionButton style={{position: 'fixed', bottom: 20, right: 20, zIndex: 1000}}>
+          <ContentAdd />
+        </FloatingActionButton>
       </div>
-    </div>
+    </MuiThemeProvider>
   )
 }
 

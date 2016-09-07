@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import Twitch from '../../twitch'
 import styles from './streams.css'
 import Stream from './components/stream'
+import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar'
 
 export const GET_STREAMS         = 'GET_STREAMS'
 export const GET_STREAMS_SUCCESS = 'GET_STREAMS_SUCCESS'
@@ -50,7 +51,9 @@ export const reducer = (state = initialState, action) => {
 const Streams = (props) => {
   return (
     <div className={styles.wrapper}>
-      <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>STREAMS</h1>
+      <Toolbar>
+          <ToolbarTitle style={{color: 'black'}} text='Streams' />
+      </Toolbar>
       <div className={styles.className}>
         {props.streams.map((stream) => {
           return (

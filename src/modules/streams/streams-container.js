@@ -6,6 +6,7 @@ import { actions as appActions } from '../app/app'
 import Loader from 'react-loaders'
 import { createWindow } from '../../window'
 import keymaster from 'keymaster'
+import CircularProgress from 'material-ui/CircularProgress'
 
 class StreamsContainer extends Component {
 
@@ -48,7 +49,7 @@ class StreamsContainer extends Component {
 
     const { streams } = this.props
 
-    return streams.length ? (<Streams onClick={this.onClick} streams={streams} />) : (<Loader type="ball-pulse-sync" />)
+    return streams.length ? (<Streams onClick={this.onClick} streams={streams} />) : (<CircularProgress size={2} />)
   }
 }
 
