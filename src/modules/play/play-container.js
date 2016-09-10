@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Loader from 'react-loaders'
 import { connect } from 'react-redux'
+import { goBack } from 'react-router-redux'
 import Play, { actions } from './play'
 import { actions as appActions } from '../app/app'
 import keymaster from 'keymaster'
@@ -9,16 +10,9 @@ class PlayContainer extends Component {
 
   constructor (props) {
     super(props)
-    this.fetchUrl       = this.fetchUrl.bind(this)
-    this.onTimeUpdate   = this.onTimeUpdate.bind(this)
-    this.onVolumeChange = this.onVolumeChange.bind(this)
-    this.toggleMute     = this.toggleMute.bind(this)
-    this.increaseVolume = this.increaseVolume.bind(this)
-    this.decreaseVolume = this.decreaseVolume.bind(this)
-    this.toggleChat     = this.toggleChat.bind(this)
   }
 
-  fetchUrl () {
+  fetchUrl = () => {
     const { user, video } = this.props.params
     this.props.dispatch(actions.clearUrl())
     this.props.dispatch(actions.getUrl(user, video))
@@ -43,30 +37,34 @@ class PlayContainer extends Component {
     keymaster.unbind('c', this.toggleChat)
   }
 
-  toggleMute () {
+  toggleMute = () => {
     this.props.dispatch(actions.toggleMute())
   }
 
-  onTimeUpdate (currentTime) {
+  onTimeUpdate = (currentTime) => {
     if (this.props.params.video) {
       this.props.dispatch(actions.updateTimestamp(this.props.params.video, currentTime))
     }
   }
 
-  onVolumeChange (e) {
+  onVolumeChange = (e) => {
     this.props.dispatch(actions.updateVolume(e.target.volume))
   }
 
-  increaseVolume () {
+  increaseVolume = () => {
     this.props.dispatch(actions.increaseVolume())
   }
 
-  decreaseVolume () {
+  decreaseVolume = () => {
     this.props.dispatch(actions.decreaseVolume())
   }
 
-  toggleChat () {
+  toggleChat = () => {
     this.props.dispatch(actions.toggleChat())
+  }
+
+  onBack = () => {
+    this.props.dispatch(goBack())
   }
 
   render () {
@@ -79,7 +77,7 @@ class PlayContainer extends Component {
       <div style={{height: '100%', position: 'relative'}}>
         { loading ? (
           <Loader type="ball-pulse-sync" />
-        ) : (<Play onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} volume={volume} timestamp={timestamp} url={url} muted={muted} chat={chat} user={user} />) }
+        ) : (<Play onBack={this.onBack} onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} volume={volume} timestamp={timestamp} url={url} muted={muted} chat={chat} user={user} />) }
       </div>
     )
   }
