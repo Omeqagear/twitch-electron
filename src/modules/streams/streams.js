@@ -13,7 +13,7 @@ export const actions = {
   getStreams: () => {
     return dispatch => {
       dispatch({ type: GET_STREAMS })
-      return Twitch.api({url: 'streams/followed'}).then(
+      return Twitch.api({url: 'streams/followed', params: {limit: 100}}).then(
         (res) => {
           dispatch({type: GET_STREAMS_SUCCESS, data: res.data.streams})
           return res.data.streams

@@ -19,7 +19,7 @@ class AppContainer extends Component {
 
   componentDidMount () {
     keymaster('backspace', this.back)
-    this.pollStreams()
+    setTimeout(this.pollStreams, 60000)
   }
 
   componentWillUnmount () {
