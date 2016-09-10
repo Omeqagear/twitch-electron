@@ -18,6 +18,12 @@ import Sidebar from '../src/modules/app/components/sidebar'
 import WindowMenu from '../src/modules/app/components/window-menu'
 import VideoControls from '../src/shared/video-controls/video-controls'
 
+const videoElement = (
+  <video>
+    <source src='http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4' type='video/mp4' />
+  </video>
+)
+
 storiesOf('Streams', module)
 .add('List', () => (
   <Streams
@@ -98,7 +104,7 @@ storiesOf('Components', module)
 
 storiesOf('Player', module)
 .add('VideoControls', () => (
-  <VideoControls />
+  <VideoControls duration={1} currentTime={0.5} volume={0.5} />
 ))
 .add('Player with chat', () => (
   <Play

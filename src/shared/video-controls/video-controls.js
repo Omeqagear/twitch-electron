@@ -1,50 +1,43 @@
-import React, { PropTypes } from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import Slider from 'material-ui/Slider'
+import React, { Component, PropTypes } from 'react'
+import VideoProgress from './video-progress'
+import VideoVolume from './video-volume'
+import VideoPlayButton from './video-play-button'
 
-const Progress = ({current, total}) => {
-  return (
-    <Slider min={0} max={total} value={current} />
-  )
-}
+export default class VideoControls extends Component {
 
-Progress.propTypes = {
-  current: PropTypes.number,
-  total: PropTypes.number,
-}
+  constructor (props) {
+    super(props)
+  }
 
-const VideoProgress = ({currentTime, duration}) => {
+  render () {
+
+    const { duration, currentTime, volume, muted } = this.props
+
     return (
-      <div style={{flex: 4, padding: '20px'}}>
-        <Progress current={currentTime} total={duration} />
+      <div className={this.props.className} style={{...this.props.style, display: 'flex', width: '100%', height: 50}}>
+        <VideoPlayButton playing={this.props.playing} onClick={this.props.onStateChange} />
+        <VideoProgress onChange={this.props.onProgressChange} currentTime={currentTime} duration={duration} />
+        <VideoVolume onChange={this.props.onVolumeChange} volume={volume} muted={muted} />
       </div>
     )
+  }
+
 }
 
-VideoProgress.propTypes = {
-  currentTime: PropTypes.number,
+VideoControls.defaultProps = {
+  style: {},
+  className: 'video-controls'
+}
+
+VideoControls.propTypes = {
   duration: PropTypes.number,
-}
-
-const VideoVolume = ({current}) => {
-  return (
-    <div style={{flex: 1, padding: '20px'}}>
-      <Slider min={0} max={1} value={current} />
-    </div>
-  )
-}
-
-VideoVolume.propTypes = {
-  current: PropTypes.number
-}
-
-export default function VideoControls () {
-    return (
-      <MuiThemeProvider>
-        <div style={{display: 'flex', width: '100%'}}>
-          <VideoProgress currentTime={0.5} duration={1} />
-          <VideoVolume current={0.5} />
-        </div>
-      </MuiThemeProvider>
-    )
+  currentTime: PropTypes.number,
+  volume: PropTypes.number,
+  muted: PropTypes.bool,
+  playing: PropTypes.bool,
+  onProgressChange: PropTypes.func,
+  onVolumeChange: PropTypes.func,
+  onStateChange: PropTypes.func,
+  style: PropTypes.object,
+  className: PropTypes.string
 }

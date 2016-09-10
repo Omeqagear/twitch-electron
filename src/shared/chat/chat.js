@@ -2,15 +2,12 @@ import React, { PropTypes } from 'react'
 
 export default function Chat(props) {
   return (
-    <iframe frameBorder="0"
-      scrolling="no"
-      style={{position: 'absolute', right: 0}}
-      id="chat_embed"
+    <webview frameBorder="0"
+      style={{position: 'absolute', right: 0, height: props.height || '100%', width: props.width || 300}}
       src={`http://www.twitch.tv/${props.user}/chat`}
-      height={props.height || '100%'}
-      width={props.width || '300px'}
+      allowpopups={true}
     >
-    </iframe>
+    </webview>
   )
 }
 
