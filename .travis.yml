@@ -1,6 +1,7 @@
-language: node_js
-node_js:
-- "6"
+osx_image: xcode8
+before_install:
+- brew update
+- brew install node
 install:
 - npm install
 script:
