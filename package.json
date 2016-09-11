@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "build": {
-      "appId": "twitch.electron"
+    "appId": "twitch.electron"
   },
   "ava": {
     "babel": "inherit",
@@ -19,8 +19,8 @@
     "postinstall": "cd app && npm install",
     "start": "ENV=development electron ./app",
     "build": "webpack",
-    "package_ml": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -ml ./app",
-    "package_w": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -w ./app",
+    "package_ml": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -ml --x64 /app",
+    "package_w": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -w --x64 /app",
     "dev": "ENV=development concurrently -k 'webpack -w --colors' 'npm start'",
     "lint": "eslint .",
     "test": "NODE_ENV=AVA ava --verbose",
@@ -32,6 +32,7 @@
   "license": "MIT",
   "devDependencies": {
     "@kadira/storybook": "^2.5.2",
+    "appdmg": "^0.4.5",
     "ava": "^0.16.0",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
