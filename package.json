@@ -1,6 +1,6 @@
 {
   "name": "twitch-electron",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "build": {
     "appId": "twitch.electron"
@@ -21,7 +21,7 @@
     "build": "webpack",
     "release_ml": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -ml --x64 --publish onTag /app",
     "release_w": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -w --publish onTag --x64 /app",
-    "release": "npm version patch && cd app && npm version --no-git-tag-version",
+    "release": "npm version patch && cd app && npm version patch --no-git-tag-version",
     "dev": "ENV=development concurrently -k 'webpack -w --colors' 'npm start'",
     "lint": "eslint .",
     "test": "NODE_ENV=AVA ava --verbose",
