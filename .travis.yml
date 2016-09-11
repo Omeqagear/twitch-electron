@@ -3,6 +3,9 @@ os:
 - osx
 node_js:
 - "6"
+before_install:
+- brew update
+- brew install wine
 install:
 - npm install
 script:
