@@ -1,5 +1,9 @@
 node_modules
-public
+app/*/**
+!app/package.json
+!app/main.js
+!app/preload.js
+dist
 release
 .DS_Store
 npm-debug.log

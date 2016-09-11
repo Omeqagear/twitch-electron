@@ -1,0 +1,30 @@
+{
+  "name": "twitch-electron",
+  "version": "1.0.0",
+  "description": "twitch-electron",
+  "main": "main.js",
+  "author": "",
+  "dependencies": {
+    "axios": "^0.14.0",
+    "express": "^4.14.0",
+    "format-number": "^2.0.1",
+    "hls.js": "^0.6.2-6",
+    "jquery": "^2.2.1",
+    "keymaster": "^1.6.2",
+    "lodash": "^4.15.0",
+    "material-ui": "^0.15.4",
+    "numeral": "^1.5.3",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-loaders": "^2.1.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.7.0",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.5.2",
+    "redux-devtools": "^3.3.1",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.11",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0"
+  }
+}

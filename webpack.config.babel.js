@@ -9,10 +9,10 @@ const extractSASS = new ExtractTextPlugin('styles/[name].css')
 
 let config = {
   entry: [
-    './src/index.js'
+    path.join(__dirname, '/src/index.js')
   ],
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'app'),
     filename: 'js/bundle.js',
     libraryTarget: 'commonjs2'
   },
@@ -65,6 +65,10 @@ let config = {
     })
   ],
   resolve: {
+    modulesDirectories: [
+      path.join(__dirname, 'node_modules'),
+      path.join(__dirname, 'app/node_modules')
+    ],
     extensions: ['', '.js', '.jsx'],
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
