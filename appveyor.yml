@@ -1,0 +1,19 @@
+init:
+  - git config --global core.autocrlf input
+
+branches:
+  only:
+    - master
+
+cache:
+  - "node_modules -> package.json"
+  - "app\\node_modules -> app\\package.json"
+  - "%APPDATA%\\npm-cache"
+
+install:
+  - npm install
+
+build_script:
+  - node --version
+  - npm --version
+  - npm run package_w
