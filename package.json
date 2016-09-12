@@ -23,7 +23,7 @@
     "start": "ENV=development electron ./app",
     "build": "webpack",
     "release_ml": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -ml --x64 --publish onTag --draft /app",
-    "release_w": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -w --x64 --ia32 --publish onTag --draft /app",
+    "release_w": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -w --x64 --publish onTag --draft /app",
     "release": "npm version patch && cd app && npm version patch --no-git-tag-version",
     "dev": "ENV=development concurrently -k 'webpack -w --colors' 'npm start'",
     "lint": "eslint .",
