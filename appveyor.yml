@@ -1,6 +1,9 @@
 init:
   - git config --global core.autocrlf input
 
+environment:
+  nodejs_version: "6"
+
 branches:
   only:
     - master
@@ -11,9 +14,10 @@ cache:
   - "%APPDATA%\\npm-cache"
 
 install:
+  - ps: Install-Product node $env:nodejs_version
   - npm install
 
 build_script:
   - node --version
   - npm --version
-  - npm run package_w
+  - npm run release_w
