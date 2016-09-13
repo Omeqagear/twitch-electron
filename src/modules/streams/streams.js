@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import Twitch from '../../twitch'
 import styles from './streams.css'
 import Stream from './components/stream'
@@ -53,18 +53,20 @@ export const reducer = (state = initialState, action) => {
   }
 }
 
-const Streams = (props) => {
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.className}>
-        {props.streams.map((stream) => {
-          return (
-            <Stream key={stream._id} onClick={props.onClick} data={stream} />
-          )
-        })}
+class Streams extends Component {
+  render () {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.className}>
+          {this.props.streams.map((stream) => {
+            return (
+              <Stream key={stream._id} onClick={this.props.onClick} data={stream} />
+            )
+          })}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 Streams.propTypes = {

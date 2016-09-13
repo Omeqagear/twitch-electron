@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { goBack } from 'react-router-redux'
 import Play, { actions } from './play'
 import { actions as appActions } from '../app/app'
-import keymaster from 'keymaster'
+import KeyBinding from 'react-keybinding-component'
 
 class PlayContainer extends Component {
 
@@ -21,20 +21,10 @@ class PlayContainer extends Component {
   componentDidMount () {
     this.fetchUrl()
     this.props.dispatch(appActions.hideUi(true))
-    keymaster('r', this.fetchUrl)
-    keymaster('m', this.toggleMute)
-    keymaster('0', this.increaseVolume)
-    keymaster('9', this.decreaseVolume)
-    keymaster('c', this.toggleChat)
   }
 
   componentWillUnmount () {
     this.props.dispatch(appActions.hideUi(false))
-    keymaster.unbind('r', this.fetchUrl)
-    keymaster.unbind('m', this.toggleMute)
-    keymaster.unbind('0', this.increaseVolume)
-    keymaster.unbind('9', this.decreaseVolume)
-    keymaster.unbind('c', this.toggleChat)
   }
 
   toggleMute = () => {
@@ -67,6 +57,26 @@ class PlayContainer extends Component {
     this.props.dispatch(goBack())
   }
 
+  onKeyDown = (e) => {
+    switch(e.keyCode) {
+      case 82:
+        this.fetchUrl()
+        break;
+      case 77:
+        this.toggleMute()
+        break;
+      case 67:
+        this.toggleChat()
+        break;
+      case 57:
+        this.decreaseVolume()
+        break;
+      case 48:
+        this.increaseVolume()
+        break;
+    }
+  }
+
   render () {
 
     const { video, user } = this.props.params
@@ -78,6 +88,7 @@ class PlayContainer extends Component {
         { loading ? (
           <Loader />
         ) : (<Play onBack={this.onBack} onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} volume={volume} timestamp={timestamp} url={url} muted={muted} chat={chat} user={user} />) }
+        <KeyBinding onKey={this.onKeyDown} />
       </div>
     )
   }
