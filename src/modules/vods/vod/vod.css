@@ -3,11 +3,11 @@
   cursor: pointer;
   position: relative;
   color: #28214e;
-  width: 25%;
+  width: 20%;
   margin: 10px;
   float: left;
   background-repeat: no-repeat;
-  min-width: 400px;
+  min-width: 200px;
   overflow: hidden;
   flex-grow: 1;
 }
@@ -63,5 +63,35 @@
 }
 
 .className:hover div {
+  opacity: 1;
+}
+
+.cardMedia:hover .playOverlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.playOverlay {
+  cursor: pointer;
+  position: absolute;
+  transition: .2s all ease;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playOverlay:hover .playIcon {
+  opacity: 0.5;
+}
+
+.playIcon {
+  opacity: 0;
+  font-size: 72px;
+  transition: .2s opacity ease;
+}
+
+.playOverlay:hover playIcon:hover {
   opacity: 1;
 }

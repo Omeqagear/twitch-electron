@@ -13,7 +13,7 @@ const initialState = {
 export const actions = {
   getVods: (user) => {
     return dispatch => {
-      dispatch({ type: GET_VODS, user: user })
+      dispatch({ type: GET_VODS, data: {user: user} })
       Twitch.api({url: `channels/${user}/videos`, params: {broadcasts: true}}).then(
         (res) => {
           dispatch({type: GET_VODS_SUCCESS, data: {user: user, videos: res.data.videos}})
@@ -28,8 +28,10 @@ export const actions = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+  case GET_VODS:
+    return Object.assign({}, state, {[action.data.user]: {loading: true, items: []}})
   case GET_VODS_SUCCESS:
-    return Object.assign({}, state, {[action.data.user]: action.data.videos})
+    return Object.assign({}, state, {[action.data.user]: {loading: false, items: action.data.videos}})
   default:
     return Object.assign({}, state)
   }
@@ -38,7 +40,6 @@ export const reducer = (state = initialState, action) => {
 export const Vods = (props) => {
   return (
     <div className={styles.wrapper}>
-      <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>{props.user}</h1>
       <div className={styles.className}>
         {props.videos.map((vod) => {
           return (

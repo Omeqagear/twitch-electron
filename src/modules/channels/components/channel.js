@@ -11,7 +11,7 @@ export default function ChannelCard (props) {
           avatar={props.data.logo}
           style={{textAlign: 'left'}}
         />
-        <CardMedia>
+        <CardMedia onClick={props.onClick.bind(this, props.data)} className={styles.cardMedia}>
           <img src={props.data.video_banner} />
         </CardMedia>
       </Card>
