@@ -2,13 +2,15 @@ import React, { PropTypes } from 'react'
 import Twitch from '../../twitch'
 import styles from './streams.css'
 import Stream from './components/stream'
-import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar'
 
 export const GET_STREAMS         = 'GET_STREAMS'
 export const GET_STREAMS_SUCCESS = 'GET_STREAMS_SUCCESS'
 export const GET_STREAMS_ERROR   = 'GET_STREAMS_ERROR'
 
-const initialState = []
+const initialState = {
+  loading: false,
+  items: []
+}
 
 export const actions = {
   getStreams: () => {
@@ -42,10 +44,12 @@ export const actions = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+  case GET_STREAMS:
+    return {...initialState, ...state, loading: true}
   case GET_STREAMS_SUCCESS:
-    return [].concat(action.data)
+    return {...initialState, ...state, items: action.data, loading: false}
   default:
-    return [].concat(state)
+    return {...state, ...state}
   }
 }
 

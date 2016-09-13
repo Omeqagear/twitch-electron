@@ -35,23 +35,29 @@ export const App = (props) => {
   return (
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <div id="main">
-        <Header show={props.hideUi}></Header>
+        <Header hide={props.hideUi}></Header>
         <div className={styles.container}>
           <div className={styles.view}>
             {props.children}
           </div>
         </div>
-        <Menu effect='slidein' position='br' method='click'>
-          <MainButton iconResting="ion-plus-round" />
-          <ChildButton
-            icon="ion-monitor"
-            label="Following"
-            href="/#/channels" />
-          <ChildButton
-            icon="ion-monitor"
-            label="Streams"
-            href="/#/" />
-        </Menu>
+        <div style={{display: !props.hideUi ? 'block' : 'none'}} >
+          <Menu effect='slidein' position='br' method='click'>
+            <MainButton iconResting="ion-plus-round" />
+            <ChildButton
+              icon="ion-monitor"
+              label="Following"
+              href="/#/channels" />
+            <ChildButton
+              icon="ion-monitor"
+              label="Streams"
+              href="/#/" />
+            <ChildButton
+              icon="ion-monitor"
+              label="Games"
+              href="/#/games" />
+          </Menu>
+        </div>
       </div>
     </MuiThemeProvider>
   )

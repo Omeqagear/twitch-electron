@@ -5,15 +5,7 @@ import Streams, { actions } from './streams'
 import { actions as appActions } from '../app/app'
 import { createWindow } from '../../window'
 import keymaster from 'keymaster'
-import CircularProgress from 'material-ui/CircularProgress'
-
-const loaderStyle = {
-    position: 'fixed',
-    left: '50%',
-    top: '50%',
-    transform: 'translateX(-50%) translateY(-50%)',
-    margin: 0
-}
+import Loader from '../../shared/loader/loader'
 
 class StreamsContainer extends Component {
 
@@ -53,20 +45,22 @@ class StreamsContainer extends Component {
   }
 
   render () {
-    const { streams } = this.props
-    return streams.length ? (<Streams onClick={this.onClick} streams={streams} />) : (<CircularProgress style={loaderStyle} size={2} />)
+    const { streams, loading } = this.props
+    return !loading ? (<Streams onClick={this.onClick} streams={streams} />) : (<Loader />)
   }
 }
 
 StreamsContainer.propTypes = {
   dispatch: PropTypes.func,
   streams: PropTypes.array,
+  loading: PropTypes.bool,
   routeParams: PropTypes.object,
 }
 
 const mapStateToProps = (state) => {
   return {
-    streams: state.streams
+    streams: state.streams.items,
+    loading: state.streams.loading
   }
 }
 

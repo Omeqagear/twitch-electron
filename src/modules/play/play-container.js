@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import Loader from 'react-loaders'
+import Loader from '../../shared/loader/loader'
 import { connect } from 'react-redux'
 import { goBack } from 'react-router-redux'
 import Play, { actions } from './play'
@@ -76,7 +76,7 @@ class PlayContainer extends Component {
     return (
       <div style={{height: '100%', position: 'relative'}}>
         { loading ? (
-          <Loader type="ball-pulse-sync" />
+          <Loader />
         ) : (<Play onBack={this.onBack} onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} volume={volume} timestamp={timestamp} url={url} muted={muted} chat={chat} user={user} />) }
       </div>
     )

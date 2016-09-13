@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import Loader from 'react-loaders'
 import { connect } from 'react-redux'
 import Channels, { actions } from './channels'
 import { push } from 'react-router-redux'
+import Loader from '../../shared/loader/loader'
 
 class ChannelsContainer extends Component {
 
@@ -22,7 +22,7 @@ class ChannelsContainer extends Component {
   render () {
     return (
       <div style={{height: '100%', position: 'relative'}}>
-        { !this.props.channels.length ? (<Loader type="ball-pulse-sync" />) : (<Channels onClick={this.onChannelClick} channels={this.props.channels} />) }
+        { this.props.loading ? (<Loader />) : (<Channels onClick={this.onChannelClick} channels={this.props.channels} />) }
       </div>
     )
   }
@@ -30,12 +30,14 @@ class ChannelsContainer extends Component {
 
 ChannelsContainer.propTypes = {
   dispatch: PropTypes.func,
-  channels: PropTypes.array
+  channels: PropTypes.array,
+  loading: PropTypes.bool
 }
 
 const mapStateToProps = (state) => {
   return {
-    channels: state.channels
+    channels: state.channels.items,
+    loading: state.channels.loading
   }
 }
 

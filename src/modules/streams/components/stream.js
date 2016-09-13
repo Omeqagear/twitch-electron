@@ -14,8 +14,11 @@ export default function StreamCard (props) {
         avatar={props.data.channel.logo}
         style={{textAlign: 'left'}}
       />
-      <CardMedia>
-          <img src={props.data.preview.large} />
+      <CardMedia className={styles.cardMedia}>
+        <div className={styles.playOverlay} onClick={props.onClick.bind(this, props.data)}>
+          <i className={`material-icons ${styles.playIcon}`}>play_circle_filled</i>
+        </div>
+        <img src={props.data.preview.large} />
       </CardMedia>
       <CardText style={{display: 'flex', flexWrap: 'wrap'}}>
         <Chip style={{margin: 4}}>
