@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import Twitch from '../../twitch'
 import styles from './streams.css'
 import Stream from './components/stream'
@@ -7,7 +7,10 @@ export const GET_STREAMS         = 'GET_STREAMS'
 export const GET_STREAMS_SUCCESS = 'GET_STREAMS_SUCCESS'
 export const GET_STREAMS_ERROR   = 'GET_STREAMS_ERROR'
 
-const initialState = []
+const initialState = {
+  loading: false,
+  items: []
+}
 
 export const actions = {
   getStreams: () => {
@@ -41,26 +44,29 @@ export const actions = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+  case GET_STREAMS:
+    return {...initialState, ...state, loading: true}
   case GET_STREAMS_SUCCESS:
-    return [].concat(action.data)
+    return {...initialState, ...state, items: action.data, loading: false}
   default:
-    return [].concat(state)
+    return {...state, ...state}
   }
 }
 
-const Streams = (props) => {
-  return (
-    <div className={styles.wrapper}>
-      <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>STREAMS</h1>
-      <div className={styles.className}>
-        {props.streams.map((stream) => {
-          return (
-            <Stream key={stream._id} onClick={props.onClick} data={stream} />
-          )
-        })}
+class Streams extends Component {
+  render () {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.className}>
+          {this.props.streams.map((stream) => {
+            return (
+              <Stream key={stream._id} onClick={this.props.onClick} data={stream} />
+            )
+          })}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 Streams.propTypes = {

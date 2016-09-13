@@ -3,6 +3,14 @@ import ChannelsJSON from './channels.json'
 import StreamsJSON from './streams.json'
 
 import React from 'react'
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+if (!window.tapInject) {
+  injectTapEventPlugin()
+  window.tapInject = true;
+}
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { storiesOf, action } from '@kadira/storybook'
 import Chat from '../src/shared/chat/chat'
 import Hls from '../src/shared/hls/hls'
@@ -26,16 +34,20 @@ const videoElement = (
 
 storiesOf('Streams', module)
 .add('List', () => (
-  <Streams
-    streams={StreamsJSON.streams}
-    onClick={action('clicked')}
-  />
+  <MuiThemeProvider>
+    <Streams
+      streams={StreamsJSON.streams}
+      onClick={action('clicked')}
+    />
+  </MuiThemeProvider>
 ))
 .add('Component', () => (
-  <Stream
-    data={StreamsJSON.streams[0]}
-    onClick={action('clicked')}
-  />
+  <MuiThemeProvider>
+    <Stream
+      data={StreamsJSON.streams[0]}
+      onClick={action('clicked')}
+    />
+  </MuiThemeProvider>
 ))
 
 storiesOf('Games', module)
@@ -68,7 +80,9 @@ storiesOf('Channels', module)
 
 storiesOf('Components', module)
 .add('Header', () => (
-  <Header />
+  <MuiThemeProvider>
+    <Header />
+  </MuiThemeProvider>
 ))
 .add('Sidebar', () => (
   <Sidebar

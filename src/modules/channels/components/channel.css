@@ -49,3 +49,7 @@
   font-weight: 200;
   text-align: center;
 }
+
+.cardMedia {
+  cursor: pointer;
+}

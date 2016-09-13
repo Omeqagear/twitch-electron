@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import Hls                  from '../../shared/hls/hls'
 import Chat                 from '../../shared/chat/chat'
 import { getPlaylist }      from '../../streamAPI'
@@ -104,18 +104,20 @@ export const reducer = (state = initialState, action) => {
   }
 }
 
-const Play = (props) => {
-  return (
-    <div className={styles.container}>
-      <div className={styles.play}>
-        {props.url && <Hls {...props} />}
-        <div className={styles.back} onClick={props.onBack}>
-          <i className='material-icons'>arrow_back</i>
+class Play extends Component {
+  render () {
+    return (
+      <div className={styles.container}>
+        <div className={styles.play}>
+          {this.props.url && <Hls {...this.props} />}
+          <div className={styles.back} onClick={this.props.onBack}>
+            <i className='material-icons'>arrow_back</i>
+          </div>
         </div>
+        <Chat show={this.props.chat} user={this.props.user} width='100%' />
       </div>
-      <Chat show={props.chat} user={props.user} width='100%' />
-    </div>
-  )
+    )
+  }
 }
 
 Play.propTypes = {

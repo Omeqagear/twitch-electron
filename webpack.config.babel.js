@@ -34,7 +34,6 @@ let config = {
       },
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
         loader: extractSASS.extract(['css?sourceMap', 'sass?sourceMap'])
       },
       {

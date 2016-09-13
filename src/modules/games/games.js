@@ -23,22 +23,26 @@ export const actions = {
   },
 }
 
-const initialState = []
+const initialState = {
+  items: [],
+  loading: false
+}
 
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+  case GET_FOLLOWED_GAMES:
+    return {...initialState, ...state, loading: true}
   case GET_FOLLOWED_GAMES_SUCCESS:
-    return [].concat(action.data)
+    return {...initialState, ...state, items: action.data, loading: false}
   default:
-    return [].concat(state)
+    return {...initialState, ...state}
   }
 }
 
 const Games = (props) => {
   return (
     <div className={styles.wrapper}>
-      <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>GAMES</h1>
       <div className={styles.className}>
         {props.games.map((data) => {
           return (<Game onClick={props.onClick} key={data.game._id} data={data} />)

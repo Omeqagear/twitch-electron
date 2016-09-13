@@ -30,22 +30,26 @@ export const actions = {
   },
 }
 
-const initialState = []
+const initialState = {
+  items: [],
+  loading: false
+}
 
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+  case GET_FOLLOWED_CHANNELS:
+    return {...initialState, ...state, loading: true}
   case GET_FOLLOWED_CHANNELS_SUCCESS:
-    return [].concat(action.data)
+    return {...initialState, ...state, items: action.data, loading: false}
   default:
-    return [].concat(state)
+    return {...initialState, ...state}
   }
 }
 
 const Channels = (props) => {
   return (
     <div className={styles.wrapper}>
-      <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>CHANNELS</h1>
       <div className={styles.className}>
         {props.channels.map((data) => {
           return (<Channel onClick={props.onClick} key={data.channel._id} data={data.channel} />)

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
 import { Vods, actions } from './vods'
-import Loader from 'react-loaders'
+import Loader from '../../shared/loader/loader'
 
 class VodsContainer extends Component {
 
@@ -22,9 +22,10 @@ class VodsContainer extends Component {
   render () {
 
     const { user } = this.props.params
-    const videos = this.props.vods[user] ? this.props.vods[user] : []
+    const videos  = this.props.vods[user] ? this.props.vods[user].items : []
+    const loading = this.props.vods[user] ? this.props.vods[user].loading : []
 
-    return videos.length ? (<Vods onVodClick={this.onClick} user={user} videos={videos} />) : (<Loader type="ball-pulse-sync" />)
+    return !loading ? (<Vods onVodClick={this.onClick} user={user} videos={videos} />) : (<Loader type="ball-pulse-sync" />)
   }
 }
 

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import Hls from 'hls.js'
 import VideoControls from '../video-controls/video-controls'
 import styles from './hls.css'
-import { debounce } from 'lodash'
 
 export default class HLS extends Component {
 
@@ -47,16 +46,11 @@ export default class HLS extends Component {
     this.hls.on(Hls.Events.MANIFEST_PARSED, this.onReady)
   }
 
-  sync = debounce(() => {
-    this.props.onTimeUpdate(this.video.currentTime)
-  }, 5000)
-
   onChange = () => {
     this.setState({
       duration: this.video.duration,
       currentTime: this.video.currentTime
     })
-    this.sync()
   }
 
   onPlay = () => {

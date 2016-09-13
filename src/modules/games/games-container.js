@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import Loader from 'react-loaders'
+import Loader from '../../shared/loader/loader'
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
 import Games, { actions } from './games'
@@ -20,22 +20,20 @@ class GamesContainer extends Component {
   }
 
   render () {
-    return (
-      <div className="games-wrapper" style={{height: '100%', position: 'relative'}}>
-        { !this.props.games.length ? (<Loader type="ball-pulse-sync" />) : (<Games onClick={this.onGameClick} games={this.props.games} />) }
-      </div>
-    )
+    return this.props.loading ? (<Loader />) : (<Games onClick={this.onGameClick} games={this.props.games} />)
   }
 }
 
 GamesContainer.propTypes = {
   dispatch: PropTypes.func,
-  games: PropTypes.array
+  games: PropTypes.array,
+  loading: PropTypes.bool
 }
 
 const mapStateToProps = (state) => {
   return {
-    games: state.games
+    games: state.games.items,
+    loading: state.games.loading
   }
 }
 
