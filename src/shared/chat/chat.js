@@ -7,7 +7,6 @@ export default function Chat(props) {
       <webview frameBorder="0"
         style={{position: 'absolute', right: 0, height: props.height || '100%', width: props.width || 300}}
         src={`http://www.twitch.tv/${props.user}/chat`}
-        allowpopups={true}
       >
       </webview>
     </div>

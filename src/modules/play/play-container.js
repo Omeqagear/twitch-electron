@@ -27,6 +27,12 @@ class PlayContainer extends Component {
     this.props.dispatch(appActions.hideUi(false))
   }
 
+  componentDidUpdate (prevProps) {
+    if (prevProps.params.user !== this.props.params.user && !this.props.loading) {
+      this.fetchUrl()
+    }
+  }
+
   toggleMute = () => {
     this.props.dispatch(actions.toggleMute())
   }
@@ -90,7 +96,16 @@ class PlayContainer extends Component {
       <div style={{height: '100%', position: 'relative'}}>
         { loading ? (
           <Loader />
-        ) : (<Play onBack={this.onBack} onTimeUpdate={this.onTimeUpdate} onVolumeChange={this.onVolumeChange} volume={volume} timestamp={timestamp} url={url} muted={muted} chat={chat} user={user} />) }
+        ) : (<Play
+              onBack={this.onBack}
+              onTimeUpdate={this.onTimeUpdate}
+              onVolumeChange={this.onVolumeChange}
+              volume={volume}
+              timestamp={timestamp}
+              url={url}
+              muted={muted}
+              chat={chat}
+              user={user} />) }
         <KeyBinding onKey={this.onKeyDown} />
       </div>
     )
