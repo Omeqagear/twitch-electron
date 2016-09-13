@@ -10,7 +10,6 @@
     "format-number": "^2.0.1",
     "hls.js": "^0.6.2-6",
     "jquery": "^2.2.1",
-    "keymaster": "^1.6.2",
     "lodash": "^4.15.0",
     "material-ui": "^0.15.4",
     "numeral": "^1.5.3",

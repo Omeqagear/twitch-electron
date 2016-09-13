@@ -46,7 +46,12 @@ class StreamsContainer extends Component {
 
   render () {
     const { streams, loading } = this.props
-    return !loading ? (<Streams onClick={this.onClick} streams={streams} />) : (<Loader />)
+    return (
+      <div>
+        {loading && <Loader />}
+        <Streams onClick={this.onClick} streams={streams} />
+      </div>
+    )
   }
 }
 

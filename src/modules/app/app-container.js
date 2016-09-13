@@ -4,9 +4,9 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { App } from './app'
 import { goBack, push } from 'react-router-redux'
-import keymaster from 'keymaster'
 import { actions as streamActions } from '../streams/streams'
 import { filter, find } from 'lodash'
+import KeyBinding from 'react-keybinding-component'
 
 class AppContainer extends Component {
 
@@ -18,12 +18,19 @@ class AppContainer extends Component {
   }
 
   componentDidMount () {
-    keymaster('backspace', this.back)
     setTimeout(this.pollStreams, 60000)
   }
 
-  componentWillUnmount () {
-    keymaster.unbind('backspace', this.back)
+  onKeyDown = (e) => {
+    if (e.target.tagName == 'WEBVIEW') {
+      return
+    }
+    
+    switch(e.keyCode) {
+      case 8:
+        this.back()
+        break;
+    }
   }
 
   onMinimize = () => {
@@ -85,16 +92,19 @@ class AppContainer extends Component {
 
   render () {
     return (
-      <App
-        onNavigate={this.navigate}
-        currentPath={this.props.location.pathname}
-        hideUi={this.props.app.hideUi}
-        children={this.props.children}
-        doubleClick={this.onMaximise}
-        onClose={this.onClose}
-        onMinimize={this.onMinimize}
-        onMaximise={this.onMaximise}
-      />
+      <div>
+        <KeyBinding onKey={this.onKeyDown} />
+        <App
+          onNavigate={this.navigate}
+          currentPath={this.props.location.pathname}
+          hideUi={this.props.app.hideUi}
+          children={this.props.children}
+          doubleClick={this.onMaximise}
+          onClose={this.onClose}
+          onMinimize={this.onMinimize}
+          onMaximise={this.onMaximise}
+        />
+      </div>
     )
   }
 }

@@ -58,6 +58,9 @@ class PlayContainer extends Component {
   }
 
   onKeyDown = (e) => {
+    if (e.target.tagName == 'WEBVIEW') {
+      return
+    }
     switch(e.keyCode) {
       case 82:
         this.fetchUrl()
