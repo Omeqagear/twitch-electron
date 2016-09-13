@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import Hls from 'hls.js'
+import VideoControls from '../video-controls/video-controls'
 import styles from './hls.css'
+import { debounce } from 'lodash'
 
 export default class HLS extends Component {
 
@@ -15,13 +17,22 @@ export default class HLS extends Component {
 
   constructor (props) {
     super(props)
-    this.onReady = this.onReady.bind(this)
-    this.updateTimestamp = this.updateTimestamp.bind(this)
+    this.state = {
+      duration: 1,
+      currentTime: 0,
+      volume: this.props.volume,
+      playing: false,
+      muted: false
+    }
   }
 
   componentWillReceiveProps ( { muted, volume } ) {
     this.video.muted = muted
     this.video.volume = volume
+    this.setState({
+      volume: volume,
+      muted: muted
+    })
   }
 
   componentDidMount () {
@@ -34,27 +45,86 @@ export default class HLS extends Component {
     this.hls.loadSource(this.props.url)
     this.hls.attachMedia(this.video)
     this.hls.on(Hls.Events.MANIFEST_PARSED, this.onReady)
-    this.timeInterval = setInterval(this.updateTimestamp, 5000)
   }
 
-  updateTimestamp () {
+  sync = debounce(() => {
     this.props.onTimeUpdate(this.video.currentTime)
+  }, 5000)
+
+  onChange = () => {
+    this.setState({
+      duration: this.video.duration,
+      currentTime: this.video.currentTime
+    })
+    this.sync()
   }
 
-  onReady () {
+  onPlay = () => {
+    this.setState({
+      playing: true
+    })
+  }
+
+  onPause = () => {
+    this.setState({
+      playing: false
+    })
+  }
+
+  onVolumeChange = (ev, val) => {
+      this.setState({
+        volume: val
+      })
+      this.video.volume = val
+  }
+
+  onProgressChange = (ev, val) => {
+      this.setState({
+        currentTime: val
+      })
+      this.video.currentTime = val
+  }
+
+  onStateChange = () => {
+    if (this.state.playing) {
+      this.video.pause()
+    } else {
+      this.video.play()
+    }
+  }
+
+  onReady = () => {
     this.video.volume = this.props.volume || 0.5
     this.video.play()
+    this.setState({playing: true})
   }
 
   componentWillUnmount () {
-    clearInterval(this.timeInterval)
     this.hls.destroy()
   }
 
   render () {
     return (
       <div className={styles.className}>
-        <video onDurationChange={this.onChange} onVolumeChange={this.props.onVolumeChange} controls ref={(v) => { this.video = v } }></video>
+        <video
+          onPause={this.onPause}
+          onPlay={this.onPlay}
+          onTimeUpdate={this.onChange}
+          onLoadedMetadata={this.onChange}
+          onDurationChange={this.onChange}
+          onVolumeChange={this.props.onVolumeChange}
+          ref={(v) => { this.video = v } }>
+        </video>
+        <VideoControls
+          className={styles.controls}
+          muted={this.state.muted}
+          playing={this.state.playing}
+          onStateChange={this.onStateChange}
+          onProgressChange={this.onProgressChange}
+          onVolumeChange={this.onVolumeChange}
+          duration={this.state.duration}
+          currentTime={this.state.currentTime}
+          volume={this.state.volume} />
       </div>
     )
   }

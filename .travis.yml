@@ -1,0 +1,13 @@
+language: node_js
+os:
+  - osx
+node_js:
+  - "6"
+install:
+  - npm install
+script:
+  - npm run release_ml
+cache:
+  directories:
+    - node_modules
+    - app/node_modules

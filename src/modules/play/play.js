@@ -109,11 +109,11 @@ const Play = (props) => {
     <div className={styles.container}>
       <div className={styles.play}>
         {props.url && <Hls {...props} />}
-        <div className={styles.controls}></div>
+        <div className={styles.back} onClick={props.onBack}>
+          <i className='material-icons'>arrow_back</i>
+        </div>
       </div>
-      <div className={styles.chat} style={{display: props.chat ? 'block' : 'none'}}>
-        <Chat user={props.user} width='100%' />
-      </div>
+      <Chat show={props.chat} user={props.user} width='100%' />
     </div>
   )
 }
@@ -125,7 +125,8 @@ Play.propTypes = {
   onTimeUpdate: PropTypes.func,
   onVolumeChange: PropTypes.func,
   user: PropTypes.string,
-  chat: PropTypes.bool
+  chat: PropTypes.bool,
+  onBack: PropTypes.func
 }
 
 export default Play

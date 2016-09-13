@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Card, CardActions, CardHeader, CardMedia, CardText } from 'material-ui/Card'
+import { Card, CardHeader, CardMedia, CardText } from 'material-ui/Card'
 import Chip from 'material-ui/Chip'
 import Avatar from 'material-ui/Avatar'
 import FontIcon from 'material-ui/FontIcon'
@@ -38,8 +38,14 @@ StreamCard.propTypes = {
 }
 
 export function Stream(props) {
+  const zDepth = [
+    'none',
+    '0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)',
+    '0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19)'
+  ]
+
   return (
-    <div className={styles.className} onClick={props.onClick.bind(this, props.data)}>
+    <div style={{boxShadow: zDepth[1]}} className={styles.className} onClick={props.onClick.bind(this, props.data)}>
       <img className={styles.bg} src={props.data.preview.large} />
       <div className={styles.top}>
         <h3 className={styles.title}>{`${props.data.channel.name.toUpperCase()}: ${props.data.channel.status}`}</h3>

@@ -14,3 +14,28 @@
   height: 100%;
   transform: translateY(-50%) translateX(-50%);
 }
+
+.className:hover .controls {
+  transform: translateY(0);
+}
+
+.controls {
+  position: absolute;
+  transform: translateY(100%);
+  bottom: 0;
+  transition: .2s all ease;
+  background: linear-gradient(to top, rgba(0,0,0,.5) 50%,rgba(125,185,232,0) 100%);
+  -webkit-app-region: no-drag;
+}
+
+.className:hover .back {
+  transform: translateY(0);
+}
+
+.back {
+  position: absolute;
+  transform: translateY(-100%);
+  top: 0;
+  transition: .2s all ease;
+  -webkit-app-region: no-drag;
+}

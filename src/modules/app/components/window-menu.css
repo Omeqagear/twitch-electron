@@ -9,13 +9,14 @@
 }
 
 .windowMenu ul {
+  display: inline-block;
   margin: 0;
   padding: 0;
   height: 100%;
   cursor: pointer;
-  position: relative;
-  top: 10px;
-  left: 10px;
+  position: absolute;
+  top: 7px;
+  right: 10px;
 }
 
 .windowMenuHidden li {

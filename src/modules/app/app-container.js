@@ -5,28 +5,28 @@ import { connect } from 'react-redux'
 import { App } from './app'
 import { goBack, push } from 'react-router-redux'
 import keymaster from 'keymaster'
+import { actions as streamActions } from '../streams/streams'
+import { filter, find } from 'lodash'
 
 class AppContainer extends Component {
 
   constructor (props) {
     super(props)
-
-    this.onMinimize = this.onMinimize.bind(this)
-    this.onMaximise = this.onMaximise.bind(this)
-    this.onClose    = this.onClose.bind(this)
-    this.navigate   = this.navigate.bind(this)
-    this.back       = this.back.bind(this)
+    this.state = {
+      streams: null
+    }
   }
 
   componentDidMount () {
     keymaster('backspace', this.back)
+    setTimeout(this.pollStreams, 60000)
   }
 
   componentWillUnmount () {
     keymaster.unbind('backspace', this.back)
   }
 
-  onMinimize () {
+  onMinimize = () => {
     let window = remote.getCurrentWindow()
     window.minimize()
   }
@@ -40,15 +40,40 @@ class AppContainer extends Component {
     }
   }
 
-  onClose () {
+  notify = (title, body, icon, url) => {
+    let notification = new Notification(title, {body, icon})
+    notification.onclick = () => {
+      this.props.dispatch(push(url))
+    }
+    return notification
+  }
+
+  pollStreams = () => {
+
+    this.props.dispatch(streamActions.getStreams()).then((streams) => {
+
+      if (this.state.streams !== null) {
+        const diff = filter(streams, (stream) => !find(this.state.streams, {_id: stream._id}))
+        diff.forEach((stream) => {
+            this.notify(`${stream.channel.name} has started streaming!`, stream.channel.status, stream.preview.small, 'play/' + stream.channel.name)
+        })
+      }
+
+      this.setState({streams})
+    })
+
+    setTimeout(this.pollStreams, 60000)
+  }
+
+  onClose = () => {
     window.close()
   }
 
-  back () {
+  back = () => {
     this.props.dispatch(goBack())
   }
 
-  navigate (url) {
+  navigate = (url) => {
 
     if (url == 'back') {
       this.props.dispatch(goBack())

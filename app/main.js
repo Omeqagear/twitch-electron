@@ -6,11 +6,11 @@ const app           = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 expressApp.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/public/index.html'))
+  res.sendFile(path.join(__dirname + '/index.html'))
 })
 
-expressApp.use('/js', express.static(path.join(__dirname, 'public/js')))
-expressApp.use('/styles', express.static(path.join(__dirname, 'public/styles')))
+expressApp.use('/js', express.static(path.join(__dirname, 'js')))
+expressApp.use('/styles', express.static(path.join(__dirname, 'styles')))
 
 expressApp.listen(process.env.ENV == 'development' ? 3002 : 6005)
 
