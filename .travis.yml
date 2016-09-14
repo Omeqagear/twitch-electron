@@ -9,4 +9,5 @@ node_js:
 install:
   - npm install
 script:
-  - npm run release_ml
+  - npm run release:mac
+  - npm run release:linux
