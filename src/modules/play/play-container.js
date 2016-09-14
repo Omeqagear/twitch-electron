@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import Loader from '../../shared/loader/loader'
 import { connect } from 'react-redux'
-import { goBack } from 'react-router-redux'
+import { goBack, push } from 'react-router-redux'
 import Play, { actions } from './play'
+import { actions as streamActions } from '../streams/streams'
 import { actions as appActions } from '../app/app'
 import KeyBinding from 'react-keybinding-component'
 
@@ -59,6 +60,17 @@ class PlayContainer extends Component {
     this.props.dispatch(actions.toggleChat())
   }
 
+  toggleList = () => {
+    if (this.props.streams.length === 0) {
+      this.props.dispatch(streamActions.getStreams())
+    }
+    this.props.dispatch(actions.toggleList())
+  }
+
+  onListItemClick = (stream) => {
+    this.props.dispatch(push('play/' + stream.channel.name))
+  }
+
   onBack = () => {
     this.props.dispatch(goBack())
   }
@@ -70,6 +82,9 @@ class PlayContainer extends Component {
     switch(e.keyCode) {
       case 82:
         this.fetchUrl()
+        break;
+      case 76:
+        this.toggleList()
         break;
       case 77:
         this.toggleMute()
@@ -90,21 +105,24 @@ class PlayContainer extends Component {
 
     const { video, user } = this.props.params
     const timestamp = this.props.timestamps[video]
-    const { url, muted, volume, chat, loading } = this.props
+    const { url, muted, volume, chat, loading, streams, list } = this.props
 
     return (
-      <div style={{height: '100%', position: 'relative'}}>
+      <div style={{height: '100vh', position: 'fixed', top: 0}}>
         { loading ? (
           <Loader />
         ) : (<Play
+              streams={streams}
               onBack={this.onBack}
               onTimeUpdate={this.onTimeUpdate}
               onVolumeChange={this.onVolumeChange}
+              onListItemClick={this.onListItemClick}
               volume={volume}
               timestamp={timestamp}
               url={url}
               muted={muted}
               chat={chat}
+              list={list}
               user={user} />) }
         <KeyBinding onKey={this.onKeyDown} />
       </div>
@@ -120,7 +138,9 @@ PlayContainer.propTypes = {
   url: PropTypes.string,
   muted: PropTypes.bool,
   volume: PropTypes.number,
-  chat: PropTypes.bool
+  chat: PropTypes.bool,
+  list: PropTypes.bool,
+  streams: PropTypes.array
 }
 
 const mapStateToProps = (state) => {
@@ -130,7 +150,9 @@ const mapStateToProps = (state) => {
     url: state.play.url,
     muted: state.play.muted,
     volume: state.play.volume,
-    chat: state.play.chat
+    chat: state.play.chat,
+    list: state.play.list,
+    streams: state.streams.items
   }
 }
 

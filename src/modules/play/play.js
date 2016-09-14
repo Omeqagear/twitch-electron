@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import Hls                  from '../../shared/hls/hls'
 import Chat                 from '../../shared/chat/chat'
+import StreamList           from '../../shared/stream-list/stream-list'
 import { getPlaylist }      from '../../streamAPI'
 import styles               from './play.css'
 
@@ -14,12 +15,14 @@ export const TOGGLE_MUTE            = 'TOGGLE_MUTE'
 export const INCREASE_VOLUME        = 'INCREASE_VOLUME'
 export const DECREASE_VOLUME        = 'DECREASE_VOLUME'
 export const TOGGLE_CHAT            = 'TOGGLE_CHAT'
+export const TOGGLE_LIST            = 'TOGGLE_LIST'
 
 const initialState = {
   timestamps: JSON.parse(localStorage.getItem('timestamps')) || {},
   loading: false,
   volume: 0.5,
-  chat: true
+  chat: true,
+  list: false
 }
 
 export const actions = {
@@ -54,6 +57,11 @@ export const actions = {
   toggleChat: () => {
     return dispatch => {
       dispatch({type: TOGGLE_CHAT})
+    }
+  },
+  toggleList: () => {
+    return dispatch => {
+      dispatch({type: TOGGLE_LIST})
     }
   },
   updateVolume: (volume) => {
@@ -99,6 +107,8 @@ export const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {muted: !state.muted})
   case TOGGLE_CHAT:
     return Object.assign({}, state, {chat: !state.chat})
+  case TOGGLE_LIST:
+    return Object.assign({}, state, {list: !state.list})
   default:
     return Object.assign({}, state)
   }
@@ -108,6 +118,7 @@ class Play extends Component {
   render () {
     return (
       <div className={styles.container}>
+        <StreamList show={this.props.list} streams={this.props.streams} onClick={this.props.onListItemClick} />
         <div className={styles.play}>
           {this.props.url && <Hls {...this.props} />}
           <div className={styles.back} onClick={this.props.onBack}>
@@ -128,7 +139,10 @@ Play.propTypes = {
   onVolumeChange: PropTypes.func,
   user: PropTypes.string,
   chat: PropTypes.bool,
-  onBack: PropTypes.func
+  list: PropTypes.bool,
+  onBack: PropTypes.func,
+  streams: PropTypes.array,
+  onListItemClick: PropTypes.func
 }
 
 export default Play

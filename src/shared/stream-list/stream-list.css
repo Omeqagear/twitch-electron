@@ -1,0 +1,23 @@
+.container {
+  height: 100vh;
+  width: 350px;
+  overflow-y: auto;
+}
+
+.list {
+}
+
+.list ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  cursor: pointer;
+  transition: .2s opacity ease;
+}
+
+.item:hover {
+  opacity: 0.8;
+}

@@ -11,6 +11,8 @@ if (!window.tapInject) {
 }
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import { storiesOf, action } from '@kadira/storybook'
 import Chat from '../src/shared/chat/chat'
 import Hls from '../src/shared/hls/hls'
@@ -25,16 +27,11 @@ import Header from '../src/modules/app/components/header'
 import Sidebar from '../src/modules/app/components/sidebar'
 import WindowMenu from '../src/modules/app/components/window-menu'
 import VideoControls from '../src/shared/video-controls/video-controls'
-
-const videoElement = (
-  <video>
-    <source src='http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4' type='video/mp4' />
-  </video>
-)
+import StreamList from '../src/shared/stream-list/stream-list'
 
 storiesOf('Streams', module)
 .add('List', () => (
-  <MuiThemeProvider>
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
     <Streams
       streams={StreamsJSON.streams}
       onClick={action('clicked')}
@@ -42,7 +39,7 @@ storiesOf('Streams', module)
   </MuiThemeProvider>
 ))
 .add('Component', () => (
-  <MuiThemeProvider>
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
     <Stream
       data={StreamsJSON.streams[0]}
       onClick={action('clicked')}
@@ -52,33 +49,46 @@ storiesOf('Streams', module)
 
 storiesOf('Games', module)
 .add('List', () => (
-  <Games
-    games={GamesJSON.top}
-    onClick={action('clicked')}
-  />
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Games
+      games={GamesJSON.top}
+      onClick={action('clicked')}
+    />
+  </MuiThemeProvider>
 ))
 .add('Component', () => (
-  <Game
-    data={GamesJSON.top[0]}
-    onClick={action('clicked')}
-  />
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Game
+      data={GamesJSON.top[0]}
+      onClick={action('clicked')}
+    />
+  </MuiThemeProvider>
 ))
 
 storiesOf('Channels', module)
 .add('List', () => (
-  <Channels
-    channels={ChannelsJSON.follows}
-    onClick={action('clicked')}
-  />
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Channels
+      channels={ChannelsJSON.follows}
+      onClick={action('clicked')}
+    />
+  </MuiThemeProvider>
 ))
 .add('Component', () => (
-  <Channel
-    data={ChannelsJSON.follows[5].channel}
-    onClick={action('clicked')}
-  />
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Channel
+      data={ChannelsJSON.follows[5].channel}
+      onClick={action('clicked')}
+    />
+  </MuiThemeProvider>
 ))
 
 storiesOf('Components', module)
+.add('StreamList', () => (
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <StreamList streams={StreamsJSON.streams} onClick={action('clicked')} />
+  </MuiThemeProvider>
+))
 .add('Header', () => (
   <MuiThemeProvider>
     <Header />
@@ -91,14 +101,16 @@ storiesOf('Components', module)
   />
 ))
 .add('WindowMenu', () => (
-  <Header>
-    <WindowMenu
-      show={true}
-      onMinimize={action('minimize')}
-      onMaximise={action('maximize')}
-      onClose={action('close')}
-    />
-  </Header>
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Header>
+      <WindowMenu
+        show={true}
+        onMinimize={action('minimize')}
+        onMaximise={action('maximize')}
+        onClose={action('close')}
+      />
+    </Header>
+  </MuiThemeProvider>
 ))
 .add('Chat', () => (
   <Chat
@@ -108,39 +120,47 @@ storiesOf('Components', module)
   />
 ))
 .add('HLS', () => (
-  <Hls
-    url='http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8'
-    onTimeUpdate={() => {}}
-    onVolumeChange={() => {}}
-    volume={0.1}
-  />
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Hls
+      url='http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8'
+      onTimeUpdate={() => {}}
+      onVolumeChange={() => {}}
+      volume={0.1}
+    />
+  </MuiThemeProvider>
 ))
 
 storiesOf('Player', module)
 .add('VideoControls', () => (
-  <VideoControls duration={1} currentTime={0.5} volume={0.5} />
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <VideoControls duration={1} currentTime={0.5} volume={0.5} />
+  </MuiThemeProvider>
 ))
 .add('Player with chat', () => (
-  <Play
-    url='http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8'
-    onTimeUpdate={() => {}}
-    onVolumeChange={() => {}}
-    volume={0.1}
-    timestamp={0}
-    muted={false}
-    chat={true}
-    user='cuda87'
-  />
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Play
+      url='http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8'
+      onTimeUpdate={() => {}}
+      onVolumeChange={() => {}}
+      volume={0.1}
+      timestamp={0}
+      muted={false}
+      chat={true}
+      user='cuda87'
+    />
+  </MuiThemeProvider>
 ))
 .add('Player without chat', () => (
-  <Play
-    url='http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8'
-    onTimeUpdate={() => {}}
-    onVolumeChange={() => {}}
-    volume={0.1}
-    timestamp={0}
-    muted={false}
-    chat={false}
-    user='cuda87'
-  />
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <Play
+      url='http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8'
+      onTimeUpdate={() => {}}
+      onVolumeChange={() => {}}
+      volume={0.1}
+      timestamp={0}
+      muted={false}
+      chat={false}
+      user='cuda87'
+    />
+  </MuiThemeProvider>
 ))

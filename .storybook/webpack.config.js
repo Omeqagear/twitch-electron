@@ -6,11 +6,19 @@
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
 
+var path = require('path')
+
 module.exports = {
   devtool: 'source-map',
   plugins: [
     // your custom plugins
   ],
+  resolve: {
+    modulesDirectories: [
+      path.join(__dirname, '../node_modules'),
+      path.join(__dirname, '../app/node_modules')
+    ],
+  },
   module: {
     loaders: [
       {
