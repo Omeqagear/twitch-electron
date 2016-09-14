@@ -31,8 +31,8 @@ class SearchContainer extends Component {
     }
   }
 
-  onTypeChange (e) {
-    this.setState({ type: e.target.value })
+  onTypeChange (e, index, val) {
+    this.setState({ type: val })
   }
 
   onClick (item, e) {

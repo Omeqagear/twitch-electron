@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import Twitch from '../../twitch'
 import styles from './search.css'
+import TextField from 'material-ui/TextField'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton'
 
 import Stream from '../streams/components/stream'
 import Channel from '../channels/components/channel'
@@ -100,26 +104,24 @@ export class Search extends Component {
     this.queryUpdate = this.queryUpdate.bind(this)
   }
 
-  queryUpdate (e) {
+  queryUpdate (e, val) {
     this.setState({
-      query: e.target.value
+      query: val
     })
   }
 
   render () {
     return (
       <div className={styles.wrapper}>
-        <h1 style={{margin: '0 20px', borderBottom: '4px solid black', padding: '20px 0', textTransform: 'uppercase'}}>SEARCH</h1>
-        <input type="text" placeholder="" className={styles.search} id="search" name="search" onChange={this.queryUpdate} />
-
-        <select className={styles.type} value={this.props.type} onChange={this.props.onTypeChange}>
-          <option value="streams">Streams</option>
-          <option value="channels">Channels</option>
-          <option value="games">Games</option>
-        </select>
-
-        <button className={styles.searchButton} onClick={this.props.onSearch.bind(this, this.state.query)}>OK</button>
-
+        <div className={styles.toolbar}>
+          <TextField hintText='Search...' name='query' className={styles.search} onChange={this.queryUpdate} />
+          <SelectField style={{width: 100, marginLeft: 20}} value={this.props.type} onChange={this.props.onTypeChange}>
+            <MenuItem value='streams' primaryText="Streams" />
+            <MenuItem value='channels' primaryText="Channels" />
+            <MenuItem value='games' primaryText="Games" />
+          </SelectField>
+          <RaisedButton label="Search" primary={true} style={{marginLeft: 20}} onClick={this.props.onSearch.bind(this, this.state.query)} />
+        </div>
         <div className={styles.className}>
           {this.props.type == 'streams' && this.props.streams.map((stream) => {
             return (

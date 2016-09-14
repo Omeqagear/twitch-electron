@@ -42,10 +42,14 @@ export const App = (props) => {
           </div>
         </div>
         <div style={{display: !props.hideUi ? 'block' : 'none'}} >
-          <Menu effect='slidein' position='br' method='click'>
-            <MainButton iconResting="ion-plus-round" />
+          <Menu effect='slidein' position='br' method='hover'>
+            <MainButton iconResting="ion-navicon-round" iconActive="ion-android-close" />
             <ChildButton
-              icon="ion-monitor"
+              icon="icon ion-android-search"
+              label="Search"
+              href="/#/search" />
+            <ChildButton
+              icon="icon ion-android-people"
               label="Following"
               href="/#/channels" />
             <ChildButton
@@ -53,7 +57,7 @@ export const App = (props) => {
               label="Streams"
               href="/#/" />
             <ChildButton
-              icon="ion-monitor"
+              icon="icon ion-ios-game-controller-b"
               label="Games"
               href="/#/games" />
           </Menu>

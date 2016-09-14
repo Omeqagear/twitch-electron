@@ -1,25 +1,20 @@
 import React, { PropTypes } from 'react'
 import format from 'format-number'
 import styles from './game.css'
+import { Card, CardHeader, CardMedia } from 'material-ui/Card'
 
-export default function Game(props) {
+export default function GameCard (props) {
   return (
-    <div
-      onClick={props.onClick.bind(this, props.data.game)}
-      className={styles.className}>
-      <img className={styles.bg} src={props.data.game.box.large} />
-      <p className={styles.title}>{props.data.game.name}</p>
-      <div className={styles.bottom}>
-        <div className={styles.viewers}>
-          <i className='material-icons'>person</i>
-          <span>{format()(props.data.viewers)}</span>
-        </div>
-      </div>
-    </div>
+    <Card style={{width: '15%', flexGrow: 1, margin: 20, minWidth: 200, cursor: 'pointer'}} className={styles.card}>
+      <CardHeader title={props.data.game.name} style={{fontWeight: 200}} subtitle={format()(props.data.viewers) + ' viewers'} avatar={props.data.game.box.small} />
+      <CardMedia className={styles.cardMedia} onClick={props.onClick.bind(this, props.data.game)}>
+        <img src={props.data.game.box.large} />
+      </CardMedia>
+    </Card>
   )
 }
 
-Game.propTypes = {
+GameCard.propTypes = {
   data: PropTypes.object,
   onClick: PropTypes.func
 }
