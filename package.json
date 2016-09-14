@@ -27,8 +27,8 @@
     "release:win": "webpack -p --define process.env.NODE_ENV='\"production\"' && build -w --x64 --publish onTag --draft /app",
     "tag": "npm version patch && cd app && npm version patch --no-git-tag-version",
     "dev": "ENV=development concurrently -k 'webpack -w --colors' 'npm start'",
-    "lint": "eslint .",
-    "test": "NODE_ENV=AVA ava --verbose",
+    "lint": "eslint src",
+    "test": "NODE_PATH=./app/node_modules NODE_ENV=AVA ava --verbose",
     "watch:test": "npm run test -- --watch",
     "storybook": "ENV=development start-storybook -p 6006 -s ./dist/",
     "build-storybook": "build-storybook"

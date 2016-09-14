@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes } from 'react'
 import Hls                  from '../../shared/hls/hls'
 import Chat                 from '../../shared/chat/chat'
 import StreamList           from '../../shared/stream-list/stream-list'
@@ -114,21 +114,19 @@ export const reducer = (state = initialState, action) => {
   }
 }
 
-class Play extends Component {
-  render () {
-    return (
-      <div className={styles.container}>
-        <StreamList show={this.props.list} streams={this.props.streams} onClick={this.props.onListItemClick} />
-        <div className={styles.play}>
-          {this.props.url && <Hls {...this.props} />}
-          <div className={styles.back} onClick={this.props.onBack}>
-            <i className='material-icons'>arrow_back</i>
-          </div>
+export default function Play (props) {
+  return (
+    <div className={styles.container}>
+      <StreamList show={props.list} streams={props.streams} onClick={props.onListItemClick} />
+      <div className={styles.play}>
+        {props.url && <Hls {...props} />}
+        <div className={styles.back} onClick={props.onBack}>
+          <i className='material-icons'>arrow_back</i>
         </div>
-        <Chat show={this.props.chat} user={this.props.user} width='100%' />
       </div>
-    )
-  }
+      <Chat show={props.chat} user={props.user} width='100%' />
+    </div>
+  )
 }
 
 Play.propTypes = {
@@ -144,5 +142,3 @@ Play.propTypes = {
   streams: PropTypes.array,
   onListItemClick: PropTypes.func
 }
-
-export default Play

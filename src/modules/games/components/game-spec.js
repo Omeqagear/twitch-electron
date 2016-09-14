@@ -1,4 +1,5 @@
 import test from 'ava'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import React from 'react'
 import { shallow, render } from 'enzyme'
 import Game from './game'
@@ -29,37 +30,11 @@ const mockData = {
 
 test('renders without exploding', t => {
   const wrapper = shallow(
-    <Game
-      data={mockData}
-      onClick={() => {}} />
+    <MuiThemeProvider>
+      <Game
+        data={mockData}
+        onClick={() => {}} />
+    </MuiThemeProvider>
   );
   t.is(wrapper.length, 1)
-})
-
-test('renders img with src', t => {
-  const wrapper = render(
-    <Game
-      data={mockData}
-      onClick={() => {}} />
-  );
-  t.is(wrapper.find('img').length, 1)
-  t.is(wrapper.find('img').attr('src'), mockData.game.box.large)
-})
-
-test('renders with title', t => {
-  const wrapper = render(
-    <Game
-      data={mockData}
-      onClick={() => {}} />
-  );
-  t.is(wrapper.find('p').text(), mockData.game.name)
-})
-
-test('renders viewers with format', t => {
-  const wrapper = render(
-    <Game
-      data={mockData}
-      onClick={() => {}} />
-  );
-  t.is(wrapper.find('span').text(), '235,090')
 })

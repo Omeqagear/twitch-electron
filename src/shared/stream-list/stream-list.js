@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import { Card, CardHeader, CardMedia } from 'material-ui/Card'
 import styles from './stream-list.css'
 
@@ -25,23 +25,18 @@ StreamListItem.propTypes = {
   onClick: PropTypes.func
 }
 
-export default class StreamList extends Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <div style={{display: this.props.show ? 'block' : 'none'}} className={styles.container}>
-        <div className={styles.list}>
-          <ul>
-            {this.props.streams.map((stream) => (
-              <StreamListItem onClick={this.props.onClick} key={stream._id} data={stream} />
-            ))}
-          </ul>
-        </div>
+export default function StreamList (props) {
+  return (
+    <div style={{display: props.show ? 'block' : 'none'}} className={styles.container}>
+      <div className={styles.list}>
+        <ul>
+          {props.streams.map((stream) => (
+            <StreamListItem onClick={props.onClick} key={stream._id} data={stream} />
+          ))}
+        </ul>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 StreamList.propTypes = {
