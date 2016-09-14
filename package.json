@@ -28,7 +28,7 @@
     "tag": "npm version patch && cd app && npm version patch --no-git-tag-version",
     "dev": "ENV=development concurrently -k 'webpack -w --colors' 'npm start'",
     "lint": "eslint src",
-    "test": "NODE_PATH=./app/node_modules NODE_ENV=AVA ava --verbose",
+    "test": "NODE_PATH=app/node_modules NODE_ENV=AVA ava --verbose",
     "watch:test": "npm run test -- --watch",
     "storybook": "ENV=development start-storybook -p 6006 -s ./dist/",
     "build-storybook": "build-storybook"
