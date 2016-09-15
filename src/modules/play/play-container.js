@@ -6,6 +6,7 @@ import Play, { actions } from './play'
 import { actions as streamActions } from '../streams/streams'
 import { actions as appActions } from '../app/app'
 import KeyBinding from 'react-keybinding-component'
+const {shell} = require('electron')
 
 class PlayContainer extends Component {
 
@@ -101,6 +102,13 @@ class PlayContainer extends Component {
     }
   }
 
+  onNewWindow = (e) => {
+    const protocol = require('url').parse(e.url).protocol
+    if (protocol === 'http:' || protocol === 'https:') {
+      shell.openExternal(e.url)
+    }
+  }
+
   render () {
 
     const { video, user } = this.props.params
@@ -117,6 +125,7 @@ class PlayContainer extends Component {
               onTimeUpdate={this.onTimeUpdate}
               onVolumeChange={this.onVolumeChange}
               onListItemClick={this.onListItemClick}
+              onNewWindow={this.onNewWindow}
               volume={volume}
               timestamp={timestamp}
               url={url}

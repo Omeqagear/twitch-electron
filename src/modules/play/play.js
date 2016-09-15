@@ -124,7 +124,7 @@ export default function Play (props) {
           <i className='material-icons'>arrow_back</i>
         </div>
       </div>
-      <Chat show={props.chat} user={props.user} width='100%' />
+      <Chat onNewWindow={props.onNewWindow} show={props.chat} user={props.user} width='100%' />
     </div>
   )
 }
@@ -140,5 +140,6 @@ Play.propTypes = {
   list: PropTypes.bool,
   onBack: PropTypes.func,
   streams: PropTypes.array,
-  onListItemClick: PropTypes.func
+  onListItemClick: PropTypes.func,
+  onNewWindow: PropTypes.func
 }

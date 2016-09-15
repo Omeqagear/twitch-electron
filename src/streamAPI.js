@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+const clientId = process.env.ENV == 'development' ? '9itztcf66hbjxkud5i9ypfvrcmo5suw' : '4qe04be53ecrr1ya356a65qq8ms1szf'
 
 export const getRandomIntInclusive = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -7,7 +8,7 @@ export const getRandomIntInclusive = (min, max) => {
 
 export const getAccessToken = (channel, videoId) => {
   var host = 'http://api.twitch.tv/api'
-  var url  = videoId ? host + '/vods/' + videoId + '/access_token' : host + '/channels/' + channel + '/access_token'
+  var url  = videoId ? host + '/vods/' + videoId + '/access_token?client_id=' + clientId : host + '/channels/' + channel + '/access_token?client_id=' + clientId
 
   // Get access token
   return new Promise(function(resolve, reject) {
@@ -45,7 +46,6 @@ export const getPlaylist = (channel, videoId) => {
 
       const host = 'http://usher.twitch.tv/api'
       let url    = videoId ? host.replace('/api', '') + '/vod/' + videoId + '?' : host + '/channel/hls/' + channel + '.m3u8?'
-
 
       for  (var key in params) {
         url += key + '=' + encodeURIComponent(params[key]) + '&'
