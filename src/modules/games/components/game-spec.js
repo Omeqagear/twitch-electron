@@ -1,7 +1,7 @@
 import test from 'ava'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import React from 'react'
-import { shallow, render } from 'enzyme'
+import { shallow } from 'enzyme'
 import Game from './game'
 
 const mockData = {

@@ -124,7 +124,7 @@ export default function Play (props) {
           <i className='material-icons'>arrow_back</i>
         </div>
       </div>
-      <Chat onNewWindow={props.onNewWindow} show={props.chat} user={props.user} width='100%' />
+      <Chat onNewWindow={props.onNewWindow} show={props.chat} user={props.user} />
     </div>
   )
 }

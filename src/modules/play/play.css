@@ -9,6 +9,7 @@
 .play {
   flex-grow: 2;
   position: relative;
+  overflow: hidden;
 }
 
 .play:hover .back {
