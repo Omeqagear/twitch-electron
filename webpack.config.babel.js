@@ -74,7 +74,6 @@ let config = {
   target: 'electron-renderer'
 }
 
-
 // Production config
 
 if (process.env.ENV == 'production') {
